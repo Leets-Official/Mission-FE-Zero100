@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import Text from './components/Text';
-import Button from './components/Button';
-import Input from './components/Input';
-import Checkbox from './components/Checkbox';
+import { Text, Button, Input, Checkbox } from './components';
+
 
 function App() {
   // 📌 할 일 목록을 상태(state)로 관리
