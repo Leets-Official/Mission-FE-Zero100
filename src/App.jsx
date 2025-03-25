@@ -31,7 +31,7 @@ function App() {
       </div>
 
       {/* 📌 실제 남은 할 일 수 계산 */}
-      <h3>{tasks.length} tasks remaining</h3>
+      <h3>{tasks.filter(task => !task.completed).length} tasks remaining</h3>
 
       {/* 할 일 목록 표시 */}
       <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
