@@ -1,9 +1,9 @@
 function Checkbox({ label }) {
   return (
-    <label>
+    <text>
       <input type="checkbox" />
       {label}
-    </label>
+    </text>
   );
 }
 export default Checkbox;

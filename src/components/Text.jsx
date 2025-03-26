@@ -1,5 +1,5 @@
-function Text({ children }) {
-  return <p>{children}</p>;
+function Text({ text }) {
+  return <p>{text}</p>;
 }
 
 export default Text;
