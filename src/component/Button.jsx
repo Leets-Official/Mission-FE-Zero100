@@ -1,13 +1,24 @@
-export default function Button({onClick, children}) {
-    const buttonStyle = {
-        border:'none',
-        borderRadius: '6px',
-        padding: '5px 3px',
-        margin: '5px 3px',
-        width: '150px',
-    };
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-    return (
-      <button style={buttonStyle} onClick={onClick}>{children}</button>
-    );
+const Button = styled.button`
+  padding: 5px 3px;
+  margin: 5px 3px;
+  width: 80%;
+  height: 35px;
+  background-color: white;
+  color: black;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: #dcdcdc;
   }
+`
+
+Button.prototype= {
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+}
+
+export default Button

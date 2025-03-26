@@ -1,59 +1,45 @@
-import Text from "./component/text";
-import Button from "./component/button";
-import Checkbox from "./component/checkbox";
-import Input from "./component/input.jsx";
-import {useState} from "react";
+// import React from 'react'
+import Text from './component/Text.jsx'
+import Button from './component/Button.jsx'
+import Category from './component/Category.jsx'
+import Checkbox from './component/Checkbox.jsx'
+import AddTodo from './component/AddTodo.jsx'
+import Input from './component/Input.jsx'
+import styled from 'styled-components'
+import { useState } from 'react'
+import TodoList from './component/TodoList.jsx'
+import Header from './component/Header.jsx'
+
+const StyledInput = styled.input`
+  width: 80%;
+  height: 30px;
+  font-size: 16px;
+  padding: 15px;
+  display: block;
+  margin: 0 auto;
+`
 
 function App() {
+  const [task, setText] = useState('')
+  const [category, setCategory] = useState('all')
 
-  const [task,setText] = useState("");
-  const handleClick = () => {
-    alert("click");
-  };
+  const handleClick = (category) => {
+    setCategory(category)
+    console.log(category)
+  }
 
+  const handleAdd = () => {
+    alert('Added: ' + task)
+  }
 
   return (
     <div>
-      <Text>TodoMatic</Text> <br />
-      <Text>What needs to be done?</Text>
-      <div
-  style={{
-    display: 'flex',
-  }}
->
-  <Input
-    value={task}
-    onChange={(e) => setText(e.target.value)}
-  />
-  <Button onClick={handleClick}>Add</Button>
-</div>
-
-<div
-  style={{
-    display: 'flex',
-  }}
->
-  <Button onClick={handleClick}>Show all tasks</Button>
-  <Button onClick={handleClick}>Show active tasks</Button>
-  <Button onClick={handleClick}>Show completed tasks</Button>
-</div>
-      <Text>3 tasks remaining</Text> <br />
-        <ul>
-          <li>
-            <input type ="checkbox" />
-            <span style={{fontSize:"25px"}}>Eat</span>
-            </li>
-          <Button onClick = {handleClick}>Edit Eat</Button>
-          <Button onClick = {handleClick}>Delete Eat</Button>
-          <li><input type ="checkbox" /><span style={{fontSize:"25px"}}>Sleep</span></li>
-          <Button onClick = {handleClick}>Edit Sleep</Button>
-          <Button onClick = {handleClick}>Delete Sleep</Button>
-          <li><input type ="checkbox" /><span style={{fontSize:"25px"}}>Repeat</span></li>
-          <Button onClick = {handleClick}>Edit Repeat</Button>
-          <Button onClick = {handleClick}>Delete Repeat</Button>
-        </ul>
+      <Header />
+      <AddTodo task={task} setText={setText} handleAdd={handleAdd} />
+      <Category onClick={handleClick} />
+      <TodoList />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
