@@ -4,42 +4,36 @@ import Checkbox from './components/Checkbox';
 import Input from './components/Input';
 
 function App() {
+  const items = ["Eat", "Sleep", "Repeat"]; // ✅ 1. 함수 내부 가장 위로 이동
+
   return (
     <div>
       <h1>TodoMatic</h1>
       <h1>What needs to be done?</h1>
+
       <div>
-        <Input placeholder=" "/>
+        <Input placeholder=" " />
         <Button>Add</Button>
       </div>
+
       <div>
         <Button>Show all tasks</Button>
         <Button>Show active tasks</Button>
         <Button>Show completed tasks</Button>
       </div>
+
       <h1>3 tasks remaining</h1>
+
       <ul>
-        <li>
-          <Checkbox label="Eat" />
-          <div>
-          <Button>Edit Eat</Button>
-          <Button>Delete Eat</Button>
-           </div>            
-        </li>
-        <li>
-          <Checkbox label="Sleep" />
-          <div>
-          <Button>Edit Sleep</Button>
-            <Button>Delete Sleep</Button>
-           </div>
-        </li>
-        <li>
-          <Checkbox label="Repeat" />
-          <div>
-          <Button>Edit Repeat</Button>
-            <Button>Delete Repeat</Button>
-          </div>
-        </li>
+        {items.map((item) => (
+          <li key={item}>
+            <Checkbox label={item} />
+            <div>
+              <Button>Edit {item}</Button>
+              <Button>Delete {item}</Button>
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   );
