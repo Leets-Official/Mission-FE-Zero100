@@ -6,7 +6,7 @@ import {useState} from "react";
 
 function App() {
 
-  const [text,setText] = useState("");
+  const [task,setText] = useState("");
   const handleClick = () => {
     alert("click");
   };
@@ -16,18 +16,33 @@ function App() {
     <div>
       <Text>TodoMatic</Text> <br />
       <Text>What needs to be done?</Text>
-      <Input
-      value={text}
-      onChange={(e) => setText(e.target.value)}
-      />
-      <Button onClick = {handleClick}>Add</Button><br />
-      <Button onClick = {handleClick}>Show all tasks </Button>
-      <Button onClick = {handleClick}>Show active tasks</Button>
-      <Button onClick = {handleClick}>Show completed tasks</Button>
+      <div
+  style={{
+    display: 'flex',
+  }}
+>
+  <Input
+    value={task}
+    onChange={(e) => setText(e.target.value)}
+  />
+  <Button onClick={handleClick}>Add</Button>
+</div>
+
+<div
+  style={{
+    display: 'flex',
+  }}
+>
+  <Button onClick={handleClick}>Show all tasks</Button>
+  <Button onClick={handleClick}>Show active tasks</Button>
+  <Button onClick={handleClick}>Show completed tasks</Button>
+</div>
       <Text>3 tasks remaining</Text> <br />
-      <label>
         <ul>
-          <li><input type ="checkbox" /><span style={{fontSize:"25px"}}>Eat</span></li>
+          <li>
+            <input type ="checkbox" />
+            <span style={{fontSize:"25px"}}>Eat</span>
+            </li>
           <Button onClick = {handleClick}>Edit Eat</Button>
           <Button onClick = {handleClick}>Delete Eat</Button>
           <li><input type ="checkbox" /><span style={{fontSize:"25px"}}>Sleep</span></li>
@@ -37,8 +52,6 @@ function App() {
           <Button onClick = {handleClick}>Edit Repeat</Button>
           <Button onClick = {handleClick}>Delete Repeat</Button>
         </ul>
-        
-      </label>
     </div>
   );
 }

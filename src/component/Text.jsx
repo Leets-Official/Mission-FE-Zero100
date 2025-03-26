@@ -5,7 +5,7 @@ export default function Text({children}) {
     lineHeight: '1.6',
     margin: '10px 0',
     fontFamily: '"Lato", sans-serif',
-    fontWeight: 'bold'
+    fontWeight:600
   };
   
   return <p style={textStyle}>{children}</p>;
