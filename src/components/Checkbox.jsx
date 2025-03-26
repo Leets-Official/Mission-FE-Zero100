@@ -1,9 +1,10 @@
-function Checkbox({ label }) {
+function Checkbox({ text }) {
   return (
-    <text>
+    <label>
       <input type="checkbox" />
-      {label}
-    </text>
+      {text}
+    </label>
   );
 }
+
 export default Checkbox;
