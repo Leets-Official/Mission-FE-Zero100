@@ -1,37 +1,18 @@
 import TodoItem from './TodoItem';
-import styled from 'styled-components';
 
-const List = styled.ul`
-  list-style: none;
-  padding-left: 0;
-`;
-
-function TodoList({
-  tasks,
-  onToggle,
-  onDelete,
-  onEdit,
-  onSaveEdit,
-  editId,
-  editText,
-  setEditText,
-}) {
+function TodoList({ tasks, onToggle, onDelete, onEdit }) {
   return (
-    <List>
-      {tasks.map((task) => (
+    <ul style={{ listStyle: 'none', padding: 0 }}>
+      {tasks.map(task => (
         <TodoItem
           key={task.id}
           task={task}
-          onToggle={onToggle}
-          onDelete={onDelete}
-          onEdit={onEdit}
-          onSaveEdit={onSaveEdit}
-          isEditing={editId === task.id}
-          editText={editText}
-          setEditText={setEditText}
+          onToggle={() => onToggle(task.id)}
+          onDelete={() => onDelete(task.id)}
+          onEdit={() => onEdit(task.id)}
         />
       ))}
-    </List>
+    </ul>
   );
 }
 
