@@ -11,7 +11,7 @@ export default function Text({ children, style }) {
     color: 'Rgba(29, 23, 22, 0.82)',
   }
 
-  return <p style={{ ...textStyle, ...style }}>{children}</p> // textStyle보다 style이 우선 적용되도록
+  return <p style={{ ...textStyle, ...style }}>{children}</p>;
 }
 
 Text.propTypes = {

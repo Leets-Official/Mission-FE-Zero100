@@ -15,8 +15,8 @@ const StyledInput = styled.input`
   height: 30px;
   font-size: 16px;
   padding: 15px;
-  display: block;
   margin: 0 auto;
+  display: block;
 `
 
 function App() {
