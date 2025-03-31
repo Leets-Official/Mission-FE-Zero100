@@ -1,20 +1,26 @@
 import styled from 'styled-components';
 
-const HeaderWrapper = styled.div`
+const Title = styled.h1`
+  font-size: 2.5rem;
   text-align: center;
-  margin-bottom: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 `;
 
-const Title = styled.h1`
-  font-size: 2rem;
-  font-weight: bold;
+const Subtitle = styled.h2`
+  font-size: 1.25rem;
+  text-align: center;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  color: #555;
 `;
 
 function Header() {
   return (
-    <HeaderWrapper>
+    <>
       <Title>TodoMatic</Title>
-    </HeaderWrapper>
+      <Subtitle>What needs to be done?</Subtitle>
+    </>
   );
 }
 
