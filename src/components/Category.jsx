@@ -1,37 +1,35 @@
 import styled from 'styled-components';
-import Button from './Button';
 
-const ButtonGroup = styled.div`
+const Wrapper = styled.div`
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-
-  @media (max-width: 480px) {
-    flex-direction: column;
-  }
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
 `;
 
-function Category({ current, onChange }) {
-  const isSelected = (value) => current === value;
+const Button = styled.button`
+  padding: 0.6rem 1.5rem;
+  border: 1px solid ${({ active }) => (active ? '#000' : '#ddd')};
+  font-size: 1rem;
+  text-decoration: ${({ active }) => (active ? 'underline' : 'none')};
+  background: none;
+  cursor: pointer;
+`;
 
+function Category({ filter, setFilter }) {
+  const filters = ['All', 'Active', 'Completed'];
   return (
-    <ButtonGroup>
-      <Button
-        label="All"
-        onClick={() => onChange('all')}
-        style={{ fontWeight: isSelected('all') ? 'bold' : 'normal' }}
-      />
-      <Button
-        label="Active"
-        onClick={() => onChange('active')}
-        style={{ fontWeight: isSelected('active') ? 'bold' : 'normal' }}
-      />
-      <Button
-        label="Completed"
-        onClick={() => onChange('completed')}
-        style={{ fontWeight: isSelected('completed') ? 'bold' : 'normal' }}
-      />
-    </ButtonGroup>
+    <Wrapper>
+      {filters.map(name => (
+        <Button
+          key={name}
+          active={filter === name}
+          onClick={() => setFilter(name)}
+        >
+          {name}
+        </Button>
+      ))}
+    </Wrapper>
   );
 }
 
