@@ -2,26 +2,27 @@ import styled from 'styled-components';
 import Input from './Input';
 import Button from './Button';
 
-const AddContainer = styled.div`
+const AddWrapper = styled.div`
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 1rem;
   margin-bottom: 1rem;
-
-  @media (max-width: 480px) {
-    flex-direction: column;
-  }
 `;
 
-function AddTodo({ value, onChange, onAdd }) {
+function AddTodo({ input, setInput, onAdd, isEditing }) {
   return (
-    <AddContainer>
+    <AddWrapper>
       <Input
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder="할 일을 입력하세요"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder=""
       />
-      <Button label="Add" onClick={onAdd} />
-    </AddContainer>
+      <Button
+        label={isEditing ? 'Save' : 'Add'}
+        onClick={onAdd}
+        variant="add"
+      />
+    </AddWrapper>
   );
 }
 
