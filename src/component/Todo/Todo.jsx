@@ -4,7 +4,6 @@ import Checkbox from '../Common/Checkbox'
 
 const TodoContainer = styled.div`
   display: flex;
-  align-items: flex-start;
   flex-direction: column;
   padding: 10px;
   margin: 10px 0;
@@ -21,7 +20,7 @@ const EditButton = styled.button`
   color: black;
   padding: 10px 20px;
   flex: 1;
-  margin-left: 5px;
+
   font-size: 16px;
   border: 2px solid black;
   box-sizing: border-box;
@@ -43,9 +42,16 @@ const ButtonContainer = styled.div`
   width: 100%;
   gap: 5px;
   flex-grow: 1;
+  margin-top: 5px;
 `
 
-const Todo = ({ task }) => {
+const TaskContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`
+
+const Todo = ({ task, id }) => {
   const [checked, setChecked] = useState(false) // 체크박스 상태 관리
 
   const handleCheckboxChange = () => {
@@ -54,13 +60,13 @@ const Todo = ({ task }) => {
 
   return (
     <TodoContainer>
-      <div>
-        <Checkbox checked={checked} onChange={handleCheckboxChange} />
+      <TaskContainer>
+        <Checkbox id={id} checked={checked} onChange={handleCheckboxChange} />
         <TaskText>{task}</TaskText>
-      </div>
+      </TaskContainer>
       <ButtonContainer>
         <EditButton>Edit</EditButton>
-        <DeleteButton delete>Delete</DeleteButton>
+        <DeleteButton>Delete</DeleteButton>
       </ButtonContainer>
     </TodoContainer>
   )
