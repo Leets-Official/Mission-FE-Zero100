@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import TextComponent from "@/component/TextComponent";
+import ButtonComponent from "@/component/ButtonComponent";
+import CheckboxComponent from "@/component/CheckboxComponent";
+import InputComponent from "@/component/InputComponent";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -42,34 +46,43 @@ function App() {
 
   return (
     <div>
-      <h1>TodoMatic</h1>
+      <h1>
+        <TextComponent text="TodoMatic" />
+      </h1>
+      <h2>
+        <TextComponent text="What needs to be done?" />
+      </h2>
       <div>
-        <input
+        <InputComponent
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="What needs to be done?"
         />
-        <button onClick={addTask}>Add</button>
+        <ButtonComponent label="Add Task" onClick={addTask} />
       </div>
       <div>
-        <button onClick={() => setFilter("all")}>Show all tasks</button>
-        <button onClick={() => setFilter("active")}>Show active tasks</button>
-        <button onClick={() => setFilter("completed")}>Show completed tasks</button>
+        <ButtonComponent label="Show all tasks" onClick={() => setFilter("all")} />
+        <ButtonComponent label="Show active tasks" onClick={() => setFilter("active")} />
+        <ButtonComponent label="Show completed tasks" onClick={() => setFilter("completed")} />
       </div>
-      <div>{tasks.filter((task) => !task.completed).length} tasks remaining</div>
+      <div>
+        <TextComponent text="3 tasks remaining" />
+      </div>
       <ul>
         {filteredTasks.map((task, index) => (
           <li key={index}>
-            <input
-              type="checkbox"
-              checked={task.completed}
+            <CheckboxComponent
+              isChecked={task.completed}
               onChange={() => toggleTask(index)}
             />
-            <span>{task.name}</span>
-            <button onClick={() => editTask(index, prompt("Edit task:", task.name))}>
-              Edit {task.name}
-            </button>
-            <button onClick={() => deleteTask(index)}>Delete {task.name}</button>
+            <TextComponent text={task.name} />
+            <ButtonComponent
+              label={`Edit ${task.name}`}
+              onClick={() => editTask(index, prompt("Edit task:", task.name))}
+            />
+            <ButtonComponent
+              label={`Delete ${task.name}`}
+              onClick={() => deleteTask(index)}
+            />
           </li>
         ))}
       </ul>

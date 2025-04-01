@@ -12,8 +12,6 @@ export default defineConfig({
     },
   },
   server: {
-  // 로컬호스트 변경
-    host: "localhost",
     port: 3000,
   },
   build: {

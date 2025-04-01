@@ -1,7 +1,7 @@
 import React from "react";
 
-function CheckboxComponent({ checked, onChange }) {
-  return <input type="checkbox" checked={checked} onChange={onChange} />;
+function CheckboxComponent({ isChecked, onChange }) {
+  return <input type="checkbox" checked={isChecked} onChange={onChange} />;
 }
 
 export default CheckboxComponent;
