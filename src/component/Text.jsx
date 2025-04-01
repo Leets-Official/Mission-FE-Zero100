@@ -7,3 +7,4 @@ const Text = ({ children, className = '', style = {} }) => {
 }
 
 export default Text
+ 
