@@ -13,14 +13,18 @@ const TaskCount = styled.p`
   color: rgba(29, 23, 22, 0.82);
 `
 
-const tasks = ['Eat', 'Sleep', 'Repeat']
-
-const TodoList = () => {
+const TodoList = ({ tasks, onToggle }) => {
   return (
     <ListContainer>
       <TaskCount>{tasks.length} tasks remaining</TaskCount>
-      {tasks.map((task, index) => (
-        <Todo key={index} task={task} id={`task-${index}`} />
+      {tasks.map((task) => (
+        <Todo
+          key={task.id}
+          task={task.label}
+          id={task.id}
+          checked={task.checked}
+          onToggle={onToggle}
+        />
       ))}
     </ListContainer>
   )
