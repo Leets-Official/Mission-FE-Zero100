@@ -1,43 +1,41 @@
-// import React from 'react'
-import Text from './component/Text.jsx'
-import Button from './component/Button.jsx'
-import Category from './component/Category.jsx'
-import Checkbox from './component/Checkbox.jsx'
-import AddTodo from './component/AddTodo.jsx'
-import Input from './component/Input.jsx'
-import styled from 'styled-components'
 import { useState } from 'react'
-import TodoList from './component/TodoList.jsx'
-import Header from './component/Header.jsx'
+import styled from 'styled-components'
 
-const StyledInput = styled.input`
-  width: 80%;
-  height: 30px;
-  font-size: 16px;
-  padding: 15px;
-  margin: 0 auto;
-  display: block;
-`
+import Text from './component/Common/Text.jsx'
+import Button from './component/Common/Button.jsx'
+import Checkbox from './component/Common/Checkbox.jsx'
+import Input from './component/Common/Input.jsx'
+import Title from './component/Layout/Title.jsx'
+import Category from './component/Category.jsx'
+import AddTodo from './component/Todo/AddTodo.jsx'
+import TodoList from './component/Todo/TodoList.jsx'
 
 function App() {
-  const [task, setText] = useState('')
-  const [category, setCategory] = useState('all')
-
-  const handleClick = (category) => {
-    setCategory(category)
-    console.log(category)
+  // const [tasks, setTasks] = useState([])
+  const tasks = [
+    { id: 'eat', label: 'Eat', checked: true },
+    { id: 'sleep', label: 'Sleep', checked: false },
+    { id: 'repeat', label: 'Repeat', checked: false },
+  ]
+  const handleAdd = (text) => {
+    if (!text.trim()) return
+    setTasks([...setTasks, { id: Date.now(), text, checked: false }])
   }
 
-  const handleAdd = () => {
-    alert('Added: ' + task)
+  const handleToggle = (id) => {
+    setTasks(
+      setTasks.map((task) =>
+        task.id === id ? { ...task, checked: !task.checked } : task
+      )
+    )
   }
 
   return (
     <div>
-      <Header />
-      <AddTodo task={task} setText={setText} handleAdd={handleAdd} />
-      <Category onClick={handleClick} />
-      <TodoList />
+      <Title />
+      <AddTodo onAdd={handleAdd} />
+      <Category />
+      <TodoList tasks={tasks} onToggle={handleToggle} />
     </div>
   )
 }
