@@ -11,12 +11,12 @@ import AddTodo from './component/Todo/AddTodo.jsx'
 import TodoList from './component/Todo/TodoList.jsx'
 
 function App() {
-  // const [tasks, setTasks] = useState([])
-  const tasks = [
+  const [tasks, setTasks] = useState([
     { id: 'eat', label: 'Eat', checked: true },
     { id: 'sleep', label: 'Sleep', checked: false },
     { id: 'repeat', label: 'Repeat', checked: false },
-  ]
+  ])
+
   const handleAdd = (text) => {
     if (!text.trim()) return
     setTasks([...setTasks, { id: Date.now(), text, checked: false }])
