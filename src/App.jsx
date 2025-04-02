@@ -17,9 +17,11 @@ function App() {
     { id: 'repeat', label: 'Repeat', isChecked: false },
   ])
 
+  const [filter, setFilter] = useState('all') 
+
   const handleAdd = (text) => {
     if (!text.trim()) return
-    setTasks([...setTasks, { id: Date.now(), text, isChecked: false }])
+    setTasks([...tasks, { id: Date.now(), text, isChecked: false }])
   }
 
   const handleToggle = (id) => {
@@ -29,6 +31,12 @@ function App() {
       )
     )
   }
+
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === 'all') return true
+    if (filter === 'active') return !task.inChecked
+    if (filter === 'completed') return task.isChecked
+  })
 
   return (
     <div>
