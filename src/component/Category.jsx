@@ -1,4 +1,4 @@
-import Button from './Button.jsx'
+import Button from './Common/Button'
 import styled from 'styled-components'
 
 const ButtonGroup = styled.div`
@@ -8,7 +8,6 @@ const ButtonGroup = styled.div`
   margin: 0 auto;
 `
 //justify-content:center (자식 요소 가로 정렬)
-
 
 export default function Category({ onClick }) {
   return (

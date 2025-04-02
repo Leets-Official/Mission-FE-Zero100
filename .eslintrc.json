@@ -17,7 +17,7 @@
   "rules": {
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
-    // "no-unused-vars": "warn",
+    "no-unused-vars": "off",
     "quotes": ["error", "double"], //큰따옴표 써도 오류 안뜨게
     "semi": ["error", "always"], //세미콜론 써도 오류 안뜨게
     "prettier/prettier": ["error", { "singleQuote": false, "semi": true }]

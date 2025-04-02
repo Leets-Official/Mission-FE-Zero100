@@ -20,7 +20,7 @@ const Button = styled.button`
   }
 `
 
-Button.prototype = {
+Button.protoType = {
   onClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 }
