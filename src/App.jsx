@@ -12,20 +12,20 @@ import TodoList from './component/Todo/TodoList.jsx'
 
 function App() {
   const [tasks, setTasks] = useState([
-    { id: 'eat', label: 'Eat', checked: true },
-    { id: 'sleep', label: 'Sleep', checked: false },
-    { id: 'repeat', label: 'Repeat', checked: false },
+    { id: 'eat', label: 'Eat', isChecked: true },
+    { id: 'sleep', label: 'Sleep', isChecked: false },
+    { id: 'repeat', label: 'Repeat', isChecked: false },
   ])
 
   const handleAdd = (text) => {
     if (!text.trim()) return
-    setTasks([...setTasks, { id: Date.now(), text, checked: false }])
+    setTasks([...setTasks, { id: Date.now(), text, isChecked: false }])
   }
 
   const handleToggle = (id) => {
     setTasks(
       setTasks.map((task) =>
-        task.id === id ? { ...task, checked: !task.checked } : task
+        task.id === id ? { ...task, isChecked: !task.isChecked } : task
       )
     )
   }

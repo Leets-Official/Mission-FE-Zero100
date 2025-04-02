@@ -22,7 +22,7 @@ const TodoList = ({ tasks, onToggle }) => {
           key={task.id}
           task={task.label}
           id={task.id}
-          checked={task.checked}
+          isChecked={task.isChecked}
           onToggle={onToggle}
         />
       ))}

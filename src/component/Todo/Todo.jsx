@@ -52,16 +52,20 @@ const TaskContainer = styled.div`
 `
 
 const Todo = ({ task, id }) => {
-  const [checked, setChecked] = useState(false) // 체크박스 상태 관리
+  const [isChecked, setChecked] = useState(false) // 체크박스 상태 관리
 
   const handleCheckboxChange = () => {
-    setChecked(!checked) // 체크 상태 변경
+    setChecked(!isChecked) // 체크 상태 변경
   }
 
   return (
     <TodoContainer>
       <TaskContainer>
-        <Checkbox id={id} checked={checked} onChange={handleCheckboxChange} />
+        <Checkbox
+          id={id}
+          isChecked={isChecked}
+          onChange={handleCheckboxChange}
+        />
         <TaskText>{task}</TaskText>
       </TaskContainer>
       <ButtonContainer>

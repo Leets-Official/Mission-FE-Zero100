@@ -14,7 +14,7 @@ const StyleCheckbox = styled.label`
 
   //가상 요소 생성
   &::after {
-    content: ${({ checked }) => (checked ? "'✔️'" : '""')};
+    content: ${({ isChecked }) => (isChecked ? "'✔️'" : '""')};
     position: absolute;
     top: 50%;
     left: 50%;
@@ -28,24 +28,24 @@ const CheckboxContainer = styled.div`
   align-items: center;
 `
 
-export default function Checkbox({ checked, onChange, id }) {
+export default function Checkbox({ isChecked, onChange, id }) {
   return (
     <div>
       <CheckboxContainer>
         <HiddenCheckbox
           type="checkbox"
           id={id}
-          checked={checked}
+          isChecked={isChecked}
           onChange={onChange}
         />
-        <StyleCheckbox htmlFor={id} checked={checked} />
+        <StyleCheckbox htmlFor={id} isChecked={isChecked} />
       </CheckboxContainer>
     </div>
   )
 }
 
 Checkbox.propTypes = {
-  checked: PropTypes.bool.isRequired, // checked는 boolean이고 필수값
+  isChecked: PropTypes.bool.isRequired, // checked는 boolean이고 필수값
   onChange: PropTypes.func.isRequired, // onChange는 함수이고 필수값
   id: PropTypes.string.isRequired,
 }
