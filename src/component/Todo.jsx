@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import CheckBox from './CheckBox'
-import Text from './Text'
 import Button from './Button'
 
 const TodoItem = styled.li`
