@@ -13,37 +13,52 @@ const Row = styled.div`
   gap: 0.8rem;
 `;
 
-const ButtonRow = styled.div`
+const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 1rem;
   margin-top: 0.5rem;
+ 
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0;
+  }
 `;
 
 const EditButton = styled(Button)`
-  width: 200px;
+  width: 350px;
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 const DeleteButton = styled(Button)`
-  width: 200px;
+  width: 350px;
   background-color: #c0392b;
   color: #fff;
   border: none;
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
-function TodoItem({ task, onToggle, onDelete, onEdit }) {
+function Todo({ task, onToggle, onDelete, onEdit }) {
   return (
     <ItemWrapper>
       <Row>
         <Checkbox checked={task.completed} onChange={() => onToggle(task.id)} />
         <Text>{task.name}</Text>
       </Row>
-      <ButtonRow>
+      <ButtonWrapper>
         <EditButton label="Edit" onClick={() => onEdit(task.id)} />
         <DeleteButton label="Delete" onClick={() => onDelete(task.id)} />
-      </ButtonRow>
+      </ButtonWrapper>
     </ItemWrapper>
   );
 }
 
-export default TodoItem;
+export default Todo;
