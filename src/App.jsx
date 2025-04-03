@@ -1,53 +1,84 @@
 import { useState } from 'react';
-import { Text, Button, Input, Checkbox } from './components';
+import { Header, AddTodo, Category, TodoList } from './components';
+import styled from 'styled-components';
 
+const Container = styled.div`
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+`;
+
+const RemainingTasks = styled.h3`
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 2rem 0 1rem 0;
+`;
 
 function App() {
-  // 📌 할 일 목록을 상태(state)로 관리
   const [tasks, setTasks] = useState([
     { id: 1, name: 'Eat', completed: true },
     { id: 2, name: 'Sleep', completed: false },
     { id: 3, name: 'Repeat', completed: false },
   ]);
+  const [filter, setFilter] = useState('All');
+  const [input, setInput] = useState('');
+  const [isEditing, setIsEditing] = useState(null);
+
+  const handleAdd = () => {
+    if (!input.trim()) return;
+    setTasks([...tasks, { id: Date.now(), name: input.trim(), completed: false }]);
+    setInput('');
+  };
+
+  const handleToggle = (id) => {
+    setTasks(tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task));
+  };
+
+  const handleDelete = (id) => {
+    setTasks(tasks.filter(task => task.id !== id));
+  };
+
+  const handleEdit = (id) => {
+    setIsEditing(id);
+    const task = tasks.find(task => task.id === id);
+    setInput(task.name);
+  };
+
+  const handleSave = () => {
+    setTasks(tasks.map(task => task.id === isEditing ? { ...task, name: input } : task));
+    setIsEditing(null);
+    setInput('');
+  };
+
+  const filteredTasks = tasks.filter(task => {
+    if (filter === 'All') return true;
+    if (filter === 'Active') return !task.completed;
+    if (filter === 'Completed') return task.completed;
+  });
 
   return (
-    <div style={{ padding: '2rem', fontFamily: 'Arial' }}>
-      <h1>TodoMatic</h1>
-      <h2>What needs to be done?</h2>
-
-      {/* 입력창과 추가 버튼 */}
-      <div style={{ marginBottom: '1rem' }}>
-        <Input value="" onChange={() => {}} />
-        <Button label="Add" onClick={() => {}} />
-      </div>
-
-      {/* 필터 버튼들 */}
-      <div style={{ marginBottom: '1rem' }}>
-        <Button label="Show all tasks" onClick={() => {}} />
-        <Button label="Show active tasks" onClick={() => {}} />
-        <Button label="Show completed tasks" onClick={() => {}} />
-      </div>
-
-      {/* 📌 실제 남은 할 일 수 계산 */}
-      <h3>{tasks.filter(task => !task.completed).length} tasks remaining</h3>
-
-      {/* 할 일 목록 표시 */}
-      <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
-        {tasks.map((task) => (
-        <li key={task.id} style={{ marginBottom: '1rem' }}>
-         <div>
-          <Checkbox checked={task.completed} onChange={() => {}} />
-          <Text>{task.name}</Text>
-         </div>
-         <div style={{ marginLeft: '1.5rem' }}>
-          <Button label={`Edit ${task.name}`} onClick={() => {}} />
-          <Button label={`Delete ${task.name}`} onClick={() => {}} />
-         </div>
-        </li>
-       ))}
-      </ul>
-
-    </div>
+    <Container>
+      <Header />
+      <AddTodo
+        input={input}
+        setInput={setInput}
+        onAdd={isEditing ? handleSave : handleAdd}
+        isEditing={isEditing !== null}
+      />
+      <Category filter={filter} setFilter={setFilter} />
+      <RemainingTasks>
+        {filteredTasks.filter(task => !task.completed).length} tasks remaining
+      </RemainingTasks>
+      <TodoList
+        tasks={filteredTasks}
+        onToggle={handleToggle}
+        onDelete={handleDelete}
+        onEdit={handleEdit}
+      />
+    </Container>
   );
 }
 
