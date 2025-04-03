@@ -1,4 +1,4 @@
-import TodoItem from './TodoItem';
+import TodoItem from './Todo';
 
 function TodoList({ tasks, onToggle, onDelete, onEdit }) {
   return (
