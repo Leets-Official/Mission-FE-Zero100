@@ -7,7 +7,6 @@ const ButtonGroup = styled.div`
   width: 60%;
   margin: 0 auto;
 `
-//justify-content:center (자식 요소 가로 정렬)
 
 export default function Category({ onClick }) {
   return (
