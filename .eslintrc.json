@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/jsx-runtime"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier"],
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": "off",
+    "quotes": ["error", "double"], //큰따옴표 써도 오류 안뜨게
+    "semi": ["error", "always"], //세미콜론 써도 오류 안뜨게
+    "prettier/prettier": ["error", { "singleQuote": false, "semi": true }]
+  }
+}

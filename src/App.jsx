@@ -1,59 +1,51 @@
-import Text from "./component/text";
-import Button from "./component/button";
-import Checkbox from "./component/checkbox";
-import Input from "./component/input.jsx";
-import {useState} from "react";
+import { useState } from 'react'
+import styled from 'styled-components'
+
+import Text from './component/Common/Text.jsx'
+import Button from './component/Common/Button.jsx'
+import Checkbox from './component/Common/Checkbox.jsx'
+import Input from './component/Common/Input.jsx'
+import Title from './component/Layout/Title.jsx'
+import Category from './component/Category.jsx'
+import AddTodo from './component/Todo/AddTodo.jsx'
+import TodoList from './component/Todo/TodoList.jsx'
 
 function App() {
+  const [tasks, setTasks] = useState([
+    { id: 'eat', label: 'Eat', isChecked: true },
+    { id: 'sleep', label: 'Sleep', isChecked: false },
+    { id: 'repeat', label: 'Repeat', isChecked: false },
+  ])
 
-  const [task,setText] = useState("");
-  const handleClick = () => {
-    alert("click");
-  };
+  const [filter, setFilter] = useState('all') 
 
+  const handleAdd = (text) => {
+    if (!text.trim()) return
+    setTasks([...tasks, { id: Date.now(), text, isChecked: false }])
+  }
+
+  const handleToggle = (id) => {
+    setTasks(
+      setTasks.map((task) =>
+        task.id === id ? { ...task, isChecked: !task.isChecked } : task
+      )
+    )
+  }
+
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === 'all') return true
+    if (filter === 'active') return !task.inChecked
+    if (filter === 'completed') return task.isChecked
+  })
 
   return (
     <div>
-      <Text>TodoMatic</Text> <br />
-      <Text>What needs to be done?</Text>
-      <div
-  style={{
-    display: 'flex',
-  }}
->
-  <Input
-    value={task}
-    onChange={(e) => setText(e.target.value)}
-  />
-  <Button onClick={handleClick}>Add</Button>
-</div>
-
-<div
-  style={{
-    display: 'flex',
-  }}
->
-  <Button onClick={handleClick}>Show all tasks</Button>
-  <Button onClick={handleClick}>Show active tasks</Button>
-  <Button onClick={handleClick}>Show completed tasks</Button>
-</div>
-      <Text>3 tasks remaining</Text> <br />
-        <ul>
-          <li>
-            <input type ="checkbox" />
-            <span style={{fontSize:"25px"}}>Eat</span>
-            </li>
-          <Button onClick = {handleClick}>Edit Eat</Button>
-          <Button onClick = {handleClick}>Delete Eat</Button>
-          <li><input type ="checkbox" /><span style={{fontSize:"25px"}}>Sleep</span></li>
-          <Button onClick = {handleClick}>Edit Sleep</Button>
-          <Button onClick = {handleClick}>Delete Sleep</Button>
-          <li><input type ="checkbox" /><span style={{fontSize:"25px"}}>Repeat</span></li>
-          <Button onClick = {handleClick}>Edit Repeat</Button>
-          <Button onClick = {handleClick}>Delete Repeat</Button>
-        </ul>
+      <Title />
+      <AddTodo onAdd={handleAdd} />
+      <Category />
+      <TodoList tasks={tasks} onToggle={handleToggle} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
