@@ -10,6 +10,7 @@ import Category from './component/Category.jsx'
 import Todo from './component/Todo/Todo.jsx'
 import AddTodo from './component/Todo/AddTodo.jsx'
 import TodoList from './component/Todo/TodoList.jsx'
+import { v4 as uuidv4 } from 'uuid'
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -22,7 +23,7 @@ function App() {
 
   const handleAdd = (text) => {
     if (!text.trim()) return
-    setTasks([...tasks, { id: Date.now(), label: text, isChecked: false }])
+    setTasks([...tasks, { id: uuidv4(), label: text, isChecked: false }])
   }
 
   const handleToggle = (id) => {
