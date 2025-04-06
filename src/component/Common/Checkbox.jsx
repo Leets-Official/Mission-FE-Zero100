@@ -35,7 +35,7 @@ export default function Checkbox({ isChecked, onChange, id }) {
         <HiddenCheckbox
           type="checkbox"
           id={id}
-          Checked={isChecked}
+          checked={isChecked}
           onChange={onChange}
         />
         <StyleCheckbox htmlFor={id} isChecked={isChecked} />
