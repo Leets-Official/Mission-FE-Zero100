@@ -43,21 +43,29 @@ const Todo = ({ todo }) => {
   const { onToggle, onDelete, onEdit, onSave } = useContext(TodoContext);
   const { id, text, completed, isEditing } = todo;
 
+   // 입력값을 내부 상태로 관리
+  const [editText, setEditText] = useState(text);
+
+  const handleSave = () => {
+    onSave(id, editText);
+  };
+
   return (
+    /* TodoWarapper 한 덩어리는 할 일(Todo) 하나를 화면에 보여주는 UI임. 
+      사용자가 할 일을 완료/수정/삭제할 수 있게 해줌 */
     <TodoWrapper>
       <TopRow>
         <Checkbox checked={completed} onChange={() => onToggle(id)} />
-        {isEditing ? (
-          <EditInput
-            defaultValue={text}
-            onBlur={(e) => onSave(id, e.target.value)}
-            autoFocus
-          />
-        ) : (
-          <TodoText>{text}</TodoText>
-        )}
+        {/* 컴포넌트를 하나로 유지하고, readonly 속성만 바꿔주기*/}
+        <EditInput
+          value={editText}
+          readOnly={!isEditing}
+          onChange={(e) => setEditText(e.target.value)}
+          onBlur={handleSave}
+          autoFocus={isEditing}
+        />
       </TopRow>
-
+            
       <BottomRow>
         <HalfButton
           variant="category"
