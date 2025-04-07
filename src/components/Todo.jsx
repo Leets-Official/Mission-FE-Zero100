@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Checkbox from './common/Checkbox';
 import Button from './common/Button';
+import { useContext } from 'react';
+import { TodoContext } from '../context/TodoContext';
 
 const TodoWrapper = styled.div`
   display: flex;
@@ -37,7 +39,8 @@ const HalfButton = styled(Button)`
   flex: 1;
 `;
 
-const Todo = ({ todo, onToggle, onDelete, onEdit, onSave }) => {
+const Todo = ({ todo }) => {
+  const { onToggle, onDelete, onEdit, onSave } = useContext(TodoContext);
   const { id, text, completed, isEditing } = todo;
 
   return (
