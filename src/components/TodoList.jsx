@@ -10,24 +10,18 @@ const Remaining = styled.h3`
   font-weight: bold;
 `;
 
-const TodoList = ({ todos, onToggle, onDelete, onEdit, onSave }) => {
-  const remaining = todos.length; 
+const TodoList = ({ todos }) => {
+  const remaining = todos.length;
 
   return (
     <ListWrapper>
       <Remaining>{remaining} tasks remaining</Remaining>
       {todos.map((todo) => (
-        <Todo
-          key={todo.id}
-          todo={todo}
-          onToggle={onToggle}
-          onDelete={onDelete}
-          onEdit={onEdit}
-          onSave={onSave}
-        />
+        <Todo key={todo.id} todo={todo} />
       ))}
     </ListWrapper>
   );
 };
+
 
 export default TodoList;
