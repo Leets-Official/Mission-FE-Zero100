@@ -8,10 +8,9 @@ const Title = styled.h1`
   margin-bottom: 1rem;
 `;
 
-class Header extends React.Component {
-  render() {
-    return <Title>TodoMatic</Title>;  
-  }
+
+const Header = () => {
+  return <Title>TodoMatic</Title>; 
 }
 
 export default Header;
