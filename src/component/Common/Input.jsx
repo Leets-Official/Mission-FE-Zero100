@@ -10,6 +10,12 @@ const StyledInput = styled.input`
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 5px;
+  outline: none;
+
+  &:focus {
+    border-color: black;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  }
 `
 
 export default function Input({ value, onChange }) {
