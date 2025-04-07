@@ -7,6 +7,7 @@ const StyledButton = styled.button`
   font-size: 1rem;
   cursor: pointer;
 
+  /* delete 버튼 */
   ${({ variant }) =>
     variant === 'danger' &&
     css`
@@ -14,6 +15,7 @@ const StyledButton = styled.button`
       color: white;
     `}
 
+    /* 필터버튼(All, Active, Completed) */
   ${({ variant }) =>
     variant === 'category' &&
     css`
@@ -23,6 +25,7 @@ const StyledButton = styled.button`
       min-width: 0;
     `}
 
+    /* 선택된 필터 버튼 색을 검정으로 변환 */
   ${({ variant }) =>
     variant === 'selected' &&
     css`
@@ -32,6 +35,16 @@ const StyledButton = styled.button`
       min-width: 0;
     `}
 
+    /* Add버튼 */
+  ${({ variant }) =>
+  variant === 'add' &&
+  css`
+    background-color: black;
+    color: white;
+    border: none;
+  `}
+
+  /* 기본스타일 */
   ${({ variant }) =>
     !variant &&
     css`
