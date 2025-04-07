@@ -24,6 +24,15 @@ const StyledButton = styled.button`
     `}
 
   ${({ variant }) =>
+    variant === 'selected' &&
+    css`
+      background-color: black;
+      color: white;
+      flex: 1;
+      min-width: 0;
+    `}
+
+  ${({ variant }) =>
     !variant &&
     css`
       background-color: #f1f1f1;
