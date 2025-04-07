@@ -1,8 +1,6 @@
-// components/AddTodo.jsx
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-// ✅ 스타일 정의
 const AddWrapper = styled.div`
   display: flex;
   flex-direction: column;
