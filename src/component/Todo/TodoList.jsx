@@ -11,6 +11,7 @@ const TaskCount = styled.p`
   font-size: 20px;
   margin-bottom: 10px;
   color: rgba(29, 23, 22, 0.82);
+  margin-left: 10px;
 `
 
 const TodoList = ({ tasks, onToggle, onDelete }) => {
