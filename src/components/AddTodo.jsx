@@ -1,8 +1,7 @@
-// components/AddTodo.jsx
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Button from './common/Button.jsx';
 
-// ✅ 스타일 정의
 const AddWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -21,19 +20,6 @@ const Input = styled.input`
   border: 1px solid black;
 `;
 
-const Button = styled.button`
-  background-color: black;
-  display: inline-block;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-
-  &:hover {
-    opacity: 0.9;
-  }
-`;
 
 const AddTodo = ({ setTodos }) => {
   const [text, setText] = useState('');
@@ -60,7 +46,7 @@ const AddTodo = ({ setTodos }) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <Button onClick={handleAdd}>Add</Button>
+      <Button variant="add" onClick={handleAdd}>Add</Button>
     </AddWrapper>
   );
 };

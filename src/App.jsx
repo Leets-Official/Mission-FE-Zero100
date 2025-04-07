@@ -1,10 +1,11 @@
-// src/App.jsx
 import React, { useState } from "react";
 import styled from "styled-components";
 import AddTodo from "./components/AddTodo.jsx";
 import TodoList from "./components/TodoList.jsx";
 import Category from "./components/Category.jsx";
-import Header from "./components/Header.jsx"; // 있으면 추가
+import Header from "./components/Header.jsx"; 
+import { TodoContext } from './context/TodoContext';
+
 
 const SubTitle = styled.p`
   text-align: center;
@@ -12,15 +13,12 @@ const SubTitle = styled.p`
   margin-bottom: 1rem;
 `;
 
-// ✅ 전체 레이아웃 스타일
 const AppWrapper = styled.div`
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2rem;
+  margin: 0 auto;
+  padding: 2rem 1rem; // 상하 2rem, 좌우 1rem
   background-color: #fff;
   border: 1px solid lightgray;
-
 `;
 
 const App = () => {
@@ -70,17 +68,20 @@ const App = () => {
 
   return (
     <AppWrapper>
-      <Header />
-      <SubTitle>What needs to be done?</SubTitle>
-      <AddTodo setTodos={setTodos} />
-      <Category filter={filter} setFilter={setFilter} />
-      <TodoList
-        todos={filteredTodos}
-        onToggle={handleToggle}
-        onDelete={handleDelete}
-        onEdit={handleEdit}
-        onSave={handleSave}
-      />
+      <TodoContext.Provider
+        value={{
+          onToggle: handleToggle,
+          onDelete: handleDelete,
+          onEdit: handleEdit,
+          onSave: handleSave,
+        }}
+      >
+        <Header />
+        <SubTitle>What needs to be done?</SubTitle>
+        <AddTodo setTodos={setTodos} />
+        <Category filter={filter} setFilter={setFilter} />
+        <TodoList todos={filteredTodos} />
+      </TodoContext.Provider>
     </AppWrapper>
   );
 };
