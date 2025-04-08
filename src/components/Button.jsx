@@ -31,9 +31,15 @@ const StyledButton = styled.button`
       border-color: black;
       text-decoration: underline;
     `}
+
+    /* 반응형 추가 */
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
 `;
 
-function Button({ label, onClick, variant, active, className }) {
+function Button({ label, onClick, variant, active, className, children }) {
   return (
     <StyledButton
       className={className}
@@ -41,10 +47,11 @@ function Button({ label, onClick, variant, active, className }) {
       $variant={variant}
       $active={active}
     >
-      {label}
+      {label || children}
     </StyledButton>
   );
 }
+
 
 
 export default Button;
