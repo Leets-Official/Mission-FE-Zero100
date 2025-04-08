@@ -46,6 +46,17 @@ function App() {
     return true;
   });
 
+  const activeTaskCount = tasks.filter(task => !task.completed).length;
+
+  <TodoList
+  filteredTasks={filteredTasks}
+  toggleTask={toggleTask}
+  editTask={editTask}
+  deleteTask={deleteTask}
+  activeTaskCount={activeTaskCount}
+/>
+
+
   return (
     <div className="app-container">
       <Header />
@@ -60,6 +71,7 @@ function App() {
         toggleTask={toggleTask}
         editTask={editTask}
         deleteTask={deleteTask}
+        remainingCount={remainingCount}
       />
     </div>
   );

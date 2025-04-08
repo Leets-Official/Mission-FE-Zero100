@@ -1,12 +1,8 @@
-// src/components/TodoList.jsx
-import TextComponent from "./TextComponent";
-import Todo from "./Todo";
-
-function TodoList({ filteredTasks, toggleTask, editTask, deleteTask }) {
+function TodoList({ filteredTasks, toggleTask, editTask, deleteTask, activeTaskCount }) {
   return (
     <div className="todo-list">
       <div className="tasks-remaining">
-        <TextComponent text={`${filteredTasks.length} tasks remaining`} />
+        <TextComponent text={`${activeTaskCount} tasks remaining`} />
       </div>
       <div className="task-list">
         {filteredTasks.map((task, index) => (
@@ -23,6 +19,3 @@ function TodoList({ filteredTasks, toggleTask, editTask, deleteTask }) {
     </div>
   );
 }
-
-export default TodoList;
-
