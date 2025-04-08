@@ -10,7 +10,7 @@ const ButtonGroup = styled.div`
 `
 
 export default function Category({ onClick }) {
-  const [selected, setSelected] = useState('') // 현재 선택된 버튼 상태
+  const [selected, setSelected] = useState('all') // 현재 선택된 버튼 상태
 
   const handleClick = (category) => {
     setSelected(category) // 상태 업데이트
