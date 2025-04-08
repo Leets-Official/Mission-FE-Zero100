@@ -23,6 +23,8 @@ function App() {
     return true
   })
 
+  const remainingCount = filteredTodos.length
+
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id))
   } //삭제할 id 외 다른 id들만 필터링하기
@@ -35,7 +37,12 @@ function App() {
       <Header />
       <AddTodo onAdd={addTodo} />
       <Category filter={filter} setFilter={setFilter} />
-      <TodoList todos={filteredTodos} onDelete={deleteTodo} onToggle={toggleTodo} />
+      <TodoList
+        todos={filteredTodos}
+        onDelete={deleteTodo}
+        onToggle={toggleTodo}
+        remainingCount={remainingCount}
+      />
     </div>
   )
 }
