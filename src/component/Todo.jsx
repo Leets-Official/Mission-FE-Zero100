@@ -49,7 +49,7 @@ const DeleteButton = styled(Button)`
   cursor: pointer;
 `
 
-const Todo = ({ id, label, isChecked }) => {
+const Todo = ({ id, label, onDelete, isChecked }) => {
   console.log('label:', label)
   return (
     <TodoItem>
@@ -59,7 +59,7 @@ const Todo = ({ id, label, isChecked }) => {
       </Top>
       <Bottom>
         <EditButton>Edit</EditButton>
-        <DeleteButton>Delete</DeleteButton>
+        <DeleteButton onClick={() => onDelete(id)}>Delete</DeleteButton>
       </Bottom>
     </TodoItem>
   )
