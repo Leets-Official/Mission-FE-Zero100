@@ -17,16 +17,25 @@ function App() {
     setTodos([...todos, newTodo])
   }
 
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === 'Active') return !todo.checked
+    if (filter === 'Completed') return todo.checked
+    return true
+  })
+
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id))
   } //삭제할 id 외 다른 id들만 필터링하기
 
+  const toggleTodo = (id) => {
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, checked: !todo.checked } : todo)))
+  }
   return (
     <div style={{ padding: '10px' }}>
       <Header />
       <AddTodo onAdd={addTodo} />
-      <Category />
-      <TodoList todos={todos} onDelete={deleteTodo} />
+      <Category filter={filter} setFilter={setFilter} />
+      <TodoList todos={filteredTodos} onDelete={deleteTodo} onToggle={toggleTodo} />
     </div>
   )
 }

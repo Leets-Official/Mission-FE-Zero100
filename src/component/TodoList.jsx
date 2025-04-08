@@ -17,7 +17,7 @@ const List = styled.ul`
   margin: 0;
 `
 
-const TodoList = ({ todos, onDelete }) => {
+const TodoList = ({ todos, onDelete, onToggle }) => {
   return (
     <Container>
       <Text style={{ fontWeight: 'bold', fontSize: '20px' }}>3 tasks remaining</Text>
@@ -29,6 +29,7 @@ const TodoList = ({ todos, onDelete }) => {
             label={todo.label}
             isChecked={todo.checked}
             onDelete={onDelete}
+            onToggle={onToggle}
           />
         ))}
       </List>

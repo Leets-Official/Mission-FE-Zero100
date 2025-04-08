@@ -49,12 +49,12 @@ const DeleteButton = styled(Button)`
   cursor: pointer;
 `
 
-const Todo = ({ id, label, onDelete, isChecked }) => {
+const Todo = ({ id, label, onDelete, isChecked, onToggle }) => {
   console.log('label:', label)
   return (
     <TodoItem>
       <Top>
-        <CheckBox id={id} isChecked={isChecked} />
+        <CheckBox id={id} isChecked={isChecked} onChange={() => onToggle(id)} />
         <Label htmlFor={id}>{label}</Label>
       </Top>
       <Bottom>

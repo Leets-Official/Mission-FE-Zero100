@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import Button from './Button'
-import { useState } from 'react'
 
 const Container = styled.div`
   display: flex;
@@ -23,17 +22,16 @@ const StyledButton = styled(Button)`
   text-decoration: ${(props) => (props.$active ? 'underline' : 'none')};
 `
 
-const Category = () => {
-  const [selected, setSelected] = useState('All')
+const Category = ({ filter, setFilter }) => {
   return (
     <Container>
-      <StyledButton $active={selected === 'All'} onClick={() => setSelected('All')}>
+      <StyledButton $active={filter === 'All'} onClick={() => setFilter('All')}>
         All
       </StyledButton>
-      <StyledButton $active={selected === 'Active'} onClick={() => setSelected('Active')}>
+      <StyledButton $active={filter === 'Active'} onClick={() => setFilter('Active')}>
         Active
       </StyledButton>
-      <StyledButton $active={selected === 'Completed'} onClick={() => setSelected('Completed')}>
+      <StyledButton $active={filter === 'Completed'} onClick={() => setFilter('Completed')}>
         Completed
       </StyledButton>
     </Container>
