@@ -1,4 +1,4 @@
-import React from "react";
+
 import ButtonComponent from "./ButtonComponent";
 
 function Category({ setFilter }) {

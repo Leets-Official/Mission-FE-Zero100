@@ -1,7 +1,12 @@
-import React from "react";
+function ButtonComponent({ label, onClick, type }) {
+ 
+  const buttonClass = type === "add" ? "add-button-container" : "";
 
-function ButtonComponent({ label, onClick }) {
-  return <button onClick={onClick}>{label}</button>;
+  return (
+    <button className={buttonClass} onClick={onClick}>
+      {label}
+    </button>
+  );
 }
 
 export default ButtonComponent;

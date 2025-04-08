@@ -1,4 +1,4 @@
-import react from "@vitejs/plugin-react";
+  import react from "@vitejs/plugin-react";
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
 
@@ -12,8 +12,7 @@ export default defineConfig({
     },
   },
   server: {
-  // 로컬호스트 변경
-    host: "localhost",
+  
     port: 3000,
   },
   build: {

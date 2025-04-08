@@ -1,4 +1,3 @@
-import React from "react";
 import InputComponent from "./InputComponent";
 import ButtonComponent from "./ButtonComponent";
 
@@ -11,9 +10,7 @@ function AddTodo({ inputValue, setInputValue, addTask }) {
           onChange={(e) => setInputValue(e.target.value)}
         />
       </div>
-      <div className="add-button-container">
-        <ButtonComponent label="Add" onClick={addTask} />
-      </div>
+      <ButtonComponent type="add" label="Add" onClick={addTask} />
     </div>
   );
 }
