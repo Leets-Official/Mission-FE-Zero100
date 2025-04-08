@@ -2,14 +2,19 @@ import React from 'react';
 import Todo from './Todo';
 import styled from 'styled-components';
 
+//<Todo /> 목록 전체를 감싸는 박스
 const ListWrapper = styled.div`
-  margin-top: 2rem;
-  padding: 0 1rem; /* 좌우 패딩 추가 */
+  margin-left: 2.6rem;      // ✅ All 버튼의 왼쪽 위치와 맞춤 (조정 가능)
+  text-align: left;
+  margin-bottom: 1rem;
 `;
 
+// n tasks remaining
 const Remaining = styled.h3`
-  font-weight: bold;
-  margin-left: 1.1rem; /* 혹은 동일한 padding 사용 */
+  font-size: 2rem;
+  margin: 0.1rem 0.7rem 0; 
+  text-align: left;  
+  color: #444;    
 `;
 
 
