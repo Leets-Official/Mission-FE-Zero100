@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 import Text from './Text'
 import Input from './Input'
@@ -27,7 +28,23 @@ const StyledButton = styled(Button)`
   margin-top: 5px;
 `
 
-const AddTodo = () => {
+const AddTodo = ({ onAdd }) => {
+  const [value, setValue] = useState('')
+
+  const handleAdd = () => {
+    const trimmed = value.trim()
+    if (trimmed) {
+      onAdd(trimmed)
+      setValue('')
+    }
+  }
+
+  const handlekeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleAdd()
+    }
+  }
+
   return (
     <Container>
       <Text style={{ marginBottom: '20px', textAlign: 'center', fontSize: '18px' }}>
@@ -35,6 +52,9 @@ const AddTodo = () => {
       </Text>
       <InputContainer>
         <Input
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onKeyDown={handlekeyDown}
           style={{
             width: '100%',
             height: '55px',
@@ -43,7 +63,7 @@ const AddTodo = () => {
           }}
         />
       </InputContainer>
-      <StyledButton>Add</StyledButton>
+      <StyledButton onClick={handleAdd}>Add</StyledButton>
     </Container>
   )
 }
