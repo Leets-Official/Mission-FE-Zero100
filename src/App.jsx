@@ -22,7 +22,7 @@ function App() {
       <Header />
       <AddTodo onAdd={addTodo} />
       <Category />
-      <TodoList />
+      <TodoList todos={todos} />
     </div>
   )
 }

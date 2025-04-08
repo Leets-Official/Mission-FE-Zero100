@@ -28,7 +28,7 @@ const Bottom = styled.div`
   display: flex;
   gap: 6px;
   font-weight: bold;
-  width: 100%
+  width: 100%;
   padding-left: 0;
 `
 
@@ -50,10 +50,11 @@ const DeleteButton = styled(Button)`
 `
 
 const Todo = ({ id, label, isChecked }) => {
+  console.log('label:', label)
   return (
     <TodoItem>
       <Top>
-        <CheckBox id={id} checked={isChecked} />
+        <CheckBox id={id} isChecked={isChecked} />
         <Label htmlFor={id}>{label}</Label>
       </Top>
       <Bottom>

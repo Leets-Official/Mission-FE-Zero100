@@ -27,8 +27,8 @@ const StyledCheckBox = styled.input.attrs({ type: 'checkbox' })`
   }
 `
 
-const CheckBox = ({ isChecked, onChange }) => {
-  return <StyledCheckBox type='checkbox' checked={isChecked} onChange={onChange} />
+const CheckBox = ({ isChecked, onChange, id }) => {
+  return <StyledCheckBox type='checkbox' id={id} checked={isChecked} onChange={onChange} />
 }
 
 export default CheckBox
