@@ -26,6 +26,7 @@ const StyledButton = styled(Button)`
   color: white;
   font-weight: bold;
   margin-top: 5px;
+  cursor: pointer;
 `
 
 const AddTodo = ({ onAdd }) => {
