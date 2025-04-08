@@ -2,8 +2,10 @@ import styled from 'styled-components'
 import Todo from '../Todo/Todo'
 
 const ListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 60%;
-  padding: 10px;
   margin: 0 auto;
 `
 
@@ -13,7 +15,7 @@ const TaskCount = styled.p`
   color: rgba(29, 23, 22, 0.82);
 `
 
-const TodoList = ({ tasks, onToggle }) => {
+const TodoList = ({ tasks, onToggle, onDelete }) => {
   return (
     <ListContainer>
       <TaskCount>{tasks.length} tasks remaining</TaskCount>
@@ -24,6 +26,7 @@ const TodoList = ({ tasks, onToggle }) => {
           id={task.id}
           isChecked={task.isChecked}
           onToggle={onToggle}
+          onDelete={onDelete}
         />
       ))}
     </ListContainer>
