@@ -6,18 +6,19 @@ const AddWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
   justify-content: center;
 `;
 
 const Input = styled.input`
   padding: 0.5rem;
   font-size: 1rem;
-  flex: 1;
-  max-width: 600px;
-  height: 200px;
+  width: 500px;
+  height: 60px;
   line-height: 1.5rem;
-  border: 1px solid black;
+  border: 2px solid black;
+   box-sizing: border-box; 
+   margin-left: 2rem;
 `;
 
 

@@ -5,10 +5,14 @@ import Button from './common/Button';
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 0.5rem;
-  margin-top: 1rem;
+ 
+
   width: 100%;           
-  max-width: 600px;     
+  max-width: 600px; 
+  margin-left: auto;           // ✅ 가운데 정렬 보조
+  margin-right: auto;
 `;
 
 const Category = ({ filter, setFilter }) => {

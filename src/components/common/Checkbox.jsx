@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+//체크박스
 const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
   appearance: none;
   -webkit-appearance: none; /* Safari 지원용 */
@@ -9,6 +10,8 @@ const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
   border-radius: 0; /* 정사각형 */
   cursor: pointer;
   position: relative;
+  margin-left: 0.3rem;
+
 
   &:checked::after {
     content: '✔';
@@ -19,8 +22,6 @@ const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
     color: black;
   }
 `;
-
-
 
 const Checkbox = (props) => <StyledCheckbox {...props} />;
 

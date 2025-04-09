@@ -6,19 +6,30 @@ import Category from "./components/Category.jsx";
 import Header from "./components/Header.jsx"; 
 import { TodoContext } from './context/TodoContext';
 
-
+// What needs to be done?
 const SubTitle = styled.p`
   text-align: center;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;       
+  margin: 1px 10px;
+  flex: none;
 `;
 
+//전체 Todo 앱을 감싸는 큰 박스 
 const AppWrapper = styled.div`
   max-width: 600px;
-  margin: 0 auto;
-  padding: 2rem 1rem; // 상하 2rem, 좌우 1rem
-  background-color: #fff;
-  border: 1px solid lightgray;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  padding: 1rem; // ✅ 기존 0 2rem → 전체 1rem로 압축
+  background-color: white;
+  //border: 1px solid #ccc;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;  // ✅ 공간 넓히지 않게 변경
+  gap: 0.5rem; 
+  text-align: left;            // ✅ 컴포넌트 간격 압축
+  box-sizing: border-box;
 `;
 
 const App = () => {
