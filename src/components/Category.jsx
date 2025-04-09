@@ -1,26 +1,32 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { useTodo } from "../contexts/TodoContext";
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin: 1rem 0;
+  margin: 1rem ;
+  margin-bottom: 2rem;
+  
 `;
 
 const Button = styled.button`
-  padding: 0.6rem 1.5rem;
-  border: 1px solid ${({ active }) => (active ? '#000' : '#ddd')};
+  width: 120px;
+  padding: 0.5rem;
+  border: 1.3px solid ${({ active }) => (active ? "#000" : "#ddd")};
   font-size: 1rem;
-  text-decoration: ${({ active }) => (active ? 'underline' : 'none')};
+  text-decoration: ${({ active }) => (active ? "underline" : "none")};
   background: none;
   cursor: pointer;
 `;
 
-function Category({ filter, setFilter }) {
-  const filters = ['All', 'Active', 'Completed'];
+function Category() {
+  const { filter, setFilter } = useTodo();
+  const filters = ["All", "Active", "Completed"];
+
   return (
     <Wrapper>
-      {filters.map(name => (
+      {filters.map((name) => (
         <Button
           key={name}
           active={filter === name}

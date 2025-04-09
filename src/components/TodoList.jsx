@@ -1,18 +1,31 @@
-import TodoItem from './Todo';
+import { useTodo } from "../contexts/TodoContext";
+import Todo from "./Todo";
+import styled from "styled-components";
 
-function TodoList({ tasks, onToggle, onDelete, onEdit }) {
+const Title = styled.h2`
+  margin-bottom: 1rem; 
+`;
+
+const ListWrapper = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+function TodoList() {
+  const { filteredTasks } = useTodo();
+
+  const remainingTasks = filteredTasks.filter((task) => !task.completed).length;
+
   return (
-    <ul style={{ listStyle: 'none', padding: 0 }}>
-      {tasks.map(task => (
-        <TodoItem
-          key={task.id}
-          task={task}
-          onToggle={() => onToggle(task.id)}
-          onDelete={() => onDelete(task.id)}
-          onEdit={() => onEdit(task.id)}
-        />
-      ))}
-    </ul>
+    <div>
+      <Title>{remainingTasks} tasks remaining</Title>
+      <ListWrapper>
+        {filteredTasks.map((task) => (
+          <Todo key={task.id} task={task} />
+        ))}
+      </ListWrapper>
+    </div>
   );
 }
 
