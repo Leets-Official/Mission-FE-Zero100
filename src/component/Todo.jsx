@@ -11,8 +11,6 @@ const TodoItem = styled.li`
 `
 
 const Label = styled.label`
-  margin: 0;
-  padding: 0;
   font-size: 16px;
 `
 
@@ -29,7 +27,6 @@ const Bottom = styled.div`
   gap: 6px;
   font-weight: bold;
   width: 100%;
-  padding-left: 0;
 `
 
 const EditButton = styled(Button)`
