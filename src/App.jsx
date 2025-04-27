@@ -1,16 +1,17 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-
-import Text from './component/Common/Text.jsx'
-import Button from './component/Common/Button.jsx'
-import Checkbox from './component/Common/Checkbox.jsx'
-import Input from './component/Common/Input.jsx'
-import Title from './component/Layout/Title.jsx'
-import Category from './component/Category.jsx'
-import Todo from './component/Todo/Todo.jsx'
-import AddTodo from './component/Todo/AddTodo.jsx'
-import TodoList from './component/Todo/TodoList.jsx'
 import { v4 as uuidv4 } from 'uuid'
+import {
+  Text,
+  Button,
+  Checkbox,
+  Input,
+  Title,
+  Category,
+  Todo,
+  AddTodo,
+  TodoList,
+} from './component/index'
 
 function App() {
   const [tasks, setTasks] = useState([
