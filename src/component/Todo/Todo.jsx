@@ -5,11 +5,11 @@ import Checkbox from '../Common/Checkbox'
 const TodoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px;
   margin: 10px 0;
   width: 100%;
   margin: 0 auto;
 `
+
 const TaskText = styled.span`
   font-size: 20px;
   margin-left: 10px;
@@ -20,7 +20,6 @@ const EditButton = styled.button`
   color: black;
   padding: 10px 20px;
   flex: 1;
-
   font-size: 16px;
   border: 2px solid black;
   box-sizing: border-box;
@@ -36,6 +35,7 @@ const DeleteButton = styled.button`
   border: none;
   box-sizing: border-box;
 `
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -51,26 +51,16 @@ const TaskContainer = styled.div`
   justify-content: flex-start;
 `
 
-const Todo = ({ task, id }) => {
-  const [isChecked, setChecked] = useState(false) // 체크박스 상태 관리
-
-  const handleCheckboxChange = () => {
-    setChecked(!isChecked) // 체크 상태 변경
-  }
-
+const Todo = ({ task, id, isChecked, onToggle, onDelete }) => {
   return (
     <TodoContainer>
       <TaskContainer>
-        <Checkbox
-          id={id}
-          isChecked={isChecked}
-          onChange={handleCheckboxChange}
-        />
+        <Checkbox id={id} isChecked={isChecked} onChange={() => onToggle(id)} />
         <TaskText>{task}</TaskText>
       </TaskContainer>
       <ButtonContainer>
         <EditButton>Edit</EditButton>
-        <DeleteButton>Delete</DeleteButton>
+        <DeleteButton onClick={() => onDelete(id)}>Delete</DeleteButton>
       </ButtonContainer>
     </TodoContainer>
   )

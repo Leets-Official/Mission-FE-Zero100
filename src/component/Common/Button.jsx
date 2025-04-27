@@ -6,9 +6,11 @@ const Button = styled.button`
   margin: 5px 3px;
   width: 80%;
   height: 35px;
-  background-color: white;
+  background-color: ${({ isSelected }) => (isSelected ? '#dcdcdc' : 'white')};
   color: black;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: ${({ isSelected }) =>
+    isSelected ? '1px solid black' : '1px solid rgba(0, 0, 0, 0.2)'};
+  text-decoration: ${({ isSelected }) => (isSelected ? 'underline' : 'none')};
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
@@ -20,9 +22,10 @@ const Button = styled.button`
   }
 `
 
-Button.protoType = {
+Button.propTypes = {
   onClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
+  isSelected: PropTypes.bool,
 }
 
 export default Button
