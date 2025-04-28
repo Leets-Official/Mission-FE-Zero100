@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useTodo } from "../contexts/TodoContext";
 import Button from "./Button"; 
 
+import { useState } from "react"; // 수정 모드 상태 관리
 
 const ItemWrapper = styled.li`
   margin-bottom: 1.5rem;
@@ -72,7 +73,7 @@ const CheckboxWrapper = styled.label`
   }
 
   input:checked + span::after {
-    content: \"✔️\";
+    content: "✔️";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -85,6 +86,19 @@ const CheckboxWrapper = styled.label`
 function Todo({ task }) {
   const { toggleTask, deleteTask, editTask } = useTodo();
 
+  const [isEditing, setIsEditing] = useState(false); // 수정모드 여부
+  const [newName, setNewName] = useState(task.name); //  수정할 새로운 이름
+
+  function handleSave() {
+    editTask(task.id, newName); // 수정된 이름 저장
+    setIsEditing(false); // 다시 보기 모드로
+  }
+
+  function handleCancel() {
+    setNewName(task.name); // 원래 이름으로 되돌리고
+    setIsEditing(false); // 보기 모드로
+  }
+
   return (
     <ItemWrapper>
       <Row>
@@ -96,11 +110,33 @@ function Todo({ task }) {
           />
           <span></span>
         </CheckboxWrapper>
-        <span>{task.name}</span>
+
+        {/* 이름 대신 입력창 조건부 렌더링 */}
+        {isEditing ? (
+          <input
+            type="text"
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
+            style={{ flex: 1, height: "30px", fontSize: "16px" }}
+          />
+        ) : (
+          <span>{task.name}</span>
+        )}
       </Row>
+
       <ButtonWrapper>
-        <EditButton onClick={() => editTask(task.id)}>Edit</EditButton>
-        <DeleteButton onClick={() => deleteTask(task.id)}>Delete</DeleteButton>
+        {/* 버튼도 Edit 모드에 따라 다르게 표시 */}
+        {isEditing ? (
+          <>
+            <EditButton onClick={handleSave}>Save</EditButton>
+            <DeleteButton onClick={handleCancel}>Cancel</DeleteButton>
+          </>
+        ) : (
+          <>
+            <EditButton onClick={() => setIsEditing(true)}>Edit</EditButton>
+            <DeleteButton onClick={() => deleteTask(task.id)}>Delete</DeleteButton>
+          </>
+        )}
       </ButtonWrapper>
     </ItemWrapper>
   );
