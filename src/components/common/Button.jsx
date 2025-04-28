@@ -34,6 +34,7 @@ ${({ variant }) =>
     border-radius: 0;
     text-decoration: underline;
     flex: none; // ✅ 버튼 크기 고정
+    box-sizing: border-box;
   `}
 
     /* Add버튼 */
