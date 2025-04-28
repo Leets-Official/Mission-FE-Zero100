@@ -15,22 +15,8 @@ const Wrapper = styled.div`
 `;
 
 const Category = ({ filter, setFilter }) => {
-  const filters = ['all', 'active', 'completed'];
-  // 할 일 목록은 all, active, completed 버튼 3가지로 필터링 할 수 있게끔 
-  
-  return (
-    <Wrapper>
-      {filters.map((f) => (
-        <Button
-          key={f}  //f는 각각 all, active, completed
-          onClick={() => setFilter(f)}
-          variant={filter === f ? 'selected' : 'category'} // filter === 'completed'면 완료된 것만 보기 모드가 된다.
-        >
-          {f.charAt(0).toUpperCase() + f.slice(1)}
-        </Button>
-      ))}
-    </Wrapper>
-  );
+  const filters = ['All', 'Active', 'Completed'];
+  // 할 일 목록은 All, Active, Completed 버튼 3가지로 필터링 할 수 있게끔 
 };
 
 export default Category;
