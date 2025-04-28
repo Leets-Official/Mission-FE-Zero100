@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import Button from './common/Button.jsx';
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import Button from './common/Button.jsx'
 
 const AddWrapper = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ const AddWrapper = styled.div`
   gap: 0.5rem;
   margin: 1rem 0;
   justify-content: center;
-`;
+`
 
 const Input = styled.input`
   padding: 0.5rem;
@@ -17,16 +17,15 @@ const Input = styled.input`
   height: 60px;
   line-height: 1.5rem;
   border: 2px solid black;
-   box-sizing: border-box; 
-   margin-left: 2rem;
-`;
-
+  box-sizing: border-box;
+  margin-left: 2rem;
+`
 
 const AddTodo = ({ setTodos }) => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState('')
 
   const handleAdd = () => {
-    if (text.trim() === '') return;
+    if (text.trim() === '') return
     setTodos((prev) => [
       ...prev,
       {
@@ -35,21 +34,23 @@ const AddTodo = ({ setTodos }) => {
         completed: false,
         isEditing: false,
       },
-    ]);
-    setText('');
-  };
+    ])
+    setText('')
+  }
 
   return (
     <AddWrapper>
       <Input
-        type="text"
-        placeholder="내용을 입력해주세요."
+        type='text'
+        placeholder='내용을 입력해주세요.'
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <Button variant="add" onClick={handleAdd}>Add</Button>
+      <Button variant='add' onClick={handleAdd}>
+        Add
+      </Button>
     </AddWrapper>
-  );
-};
+  )
+}
 
-export default AddTodo;
+export default AddTodo
