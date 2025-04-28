@@ -7,12 +7,11 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
- 
-
   width: 100%;           
   max-width: 600px; 
   margin-left: auto;           // ✅ 가운데 정렬 보조
   margin-right: auto;
+  
 `;
 
 const Category = ({ filter, setFilter }) => {
