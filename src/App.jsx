@@ -1,22 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { Title, AddTodo, Category, TodoList } from './component/index'
 
 function App() {
-  const [tasks, setTasks] = useState([
-    { id: 'eat', label: 'Eat', isChecked: false },
-    { id: 'sleep', label: 'Sleep', isChecked: false },
-    { id: 'repeat', label: 'Repeat', isChecked: false },
-  ])
+  // 로컬 스토리지에서 tasks 불러오기
+  const loadTasks = () => {
+    const savedTasks = localStorage.getItem('tasks')
+    return savedTasks ? JSON.parse(savedTasks) : [] // 없으면 빈 배열로 초기화
+  }
+
+  const [tasks, setTasks] = useState(loadTasks()) // tasks 초기값으로 로컬 스토리지 값 사용
 
   const [filter, setFilter] = useState('all')
   const [isEditing, setIsEditing] = useState(false)
   const [editTaskId, setEditTaskId] = useState(null)
   const [newName, setNewName] = useState('')
 
+  // tasks가 변경될 때마다 로컬 스토리지에 저장
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
+
   const handleAdd = (text) => {
     if (!text.trim()) return
-    setTasks([...tasks, { id: uuidv4(), label: text, isChecked: false }])
+    const newTask = { id: uuidv4(), label: text, isChecked: false }
+    setTasks([...tasks, newTask])
   }
 
   const handleToggle = (id) => {
