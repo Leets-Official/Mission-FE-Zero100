@@ -29,7 +29,7 @@ const AddTodo = ({ setTodos }) => {
     setTodos((prev) => [
       ...prev,
       {
-        id: Date.now(),
+        id: uuidv4(),
         text,
         completed: false,
         isEditing: false,
