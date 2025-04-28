@@ -15,7 +15,18 @@ const TaskCount = styled.p`
   color: rgba(29, 23, 22, 0.82);
 `
 
-const TodoList = ({ tasks, onToggle, onDelete }) => {
+const TodoList = ({
+  tasks,
+  onToggle,
+  onDelete,
+  onEdit,
+  isEditing,
+  newName,
+  setNewName,
+  onSave,
+  onCancel,
+  editTaskId,
+}) => {
   return (
     <ListContainer>
       <TaskCount>{tasks.length} tasks remaining</TaskCount>
@@ -27,6 +38,12 @@ const TodoList = ({ tasks, onToggle, onDelete }) => {
           isChecked={task.isChecked}
           onToggle={onToggle}
           onDelete={onDelete}
+          onEdit={onEdit}
+          isEditing={isEditing && editTaskId === task.id} // 수정 중인 task만 수정 창을 표시
+          newName={newName}
+          setNewName={setNewName}
+          onSave={onSave}
+          onCancel={onCancel}
         />
       ))}
     </ListContainer>

@@ -1,17 +1,6 @@
 import { useState } from 'react'
-import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
-import {
-  Text,
-  Button,
-  Checkbox,
-  Input,
-  Title,
-  Category,
-  Todo,
-  AddTodo,
-  TodoList,
-} from './component/index'
+import { Title, AddTodo, Category, TodoList } from './component/index'
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -21,6 +10,9 @@ function App() {
   ])
 
   const [filter, setFilter] = useState('all')
+  const [isEditing, setIsEditing] = useState(false)
+  const [editTaskId, setEditTaskId] = useState(null)
+  const [newName, setNewName] = useState('')
 
   const handleAdd = (text) => {
     if (!text.trim()) return
@@ -34,6 +26,7 @@ function App() {
       )
     )
   }
+
   const handleDelete = (id) => {
     setTasks(tasks.filter((task) => task.id !== id))
   }
@@ -44,15 +37,49 @@ function App() {
     if (filter === 'completed') return task.isChecked
   })
 
+  const handleEdit = (id) => {
+    const taskToEdit = tasks.find((task) => task.id === id)
+    setEditTaskId(id)
+    setNewName(taskToEdit.label)
+    setIsEditing(true)
+  }
+
+  const handleSave = () => {
+    if (newName.trim()) {
+      setTasks(
+        tasks.map((task) =>
+          task.id === editTaskId ? { ...task, label: newName } : task
+        )
+      )
+      setIsEditing(false)
+      setNewName('')
+      setEditTaskId(null)
+    }
+  }
+
+  const handleCancel = () => {
+    setIsEditing(false)
+    setNewName('')
+    setEditTaskId(null)
+  }
+
   return (
     <div>
       <Title />
       <AddTodo onAdd={handleAdd} />
       <Category onClick={setFilter} />
+
       <TodoList
         tasks={filteredTasks}
         onToggle={handleToggle}
         onDelete={handleDelete}
+        onEdit={handleEdit}
+        isEditing={isEditing}
+        newName={newName}
+        setNewName={setNewName}
+        onSave={handleSave}
+        onCancel={handleCancel}
+        editTaskId={editTaskId}
       />
     </div>
   )
