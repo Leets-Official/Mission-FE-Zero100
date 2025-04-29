@@ -1,9 +1,8 @@
-
+import React, { useState } from "react";
 import Header from "@/component/Header";
 import AddTodo from "@/component/AddTodo";
-import Category from "@/component/Category";
+import Category from "@/component/Category"; // Category 컴포넌트 추가
 import TodoList from "@/component/TodoList";
-
 import "./App.css";
 
 function App() {
@@ -46,17 +45,6 @@ function App() {
     return true;
   });
 
-  const activeTaskCount = tasks.filter(task => !task.completed).length;
-
-  <TodoList
-  filteredTasks={filteredTasks}
-  toggleTask={toggleTask}
-  editTask={editTask}
-  deleteTask={deleteTask}
-  activeTaskCount={activeTaskCount}
-/>
-
-
   return (
     <div className="app-container">
       <Header />
@@ -65,15 +53,14 @@ function App() {
         setInputValue={setInputValue}
         addTask={addTask}
       />
-      <Category setFilter={setFilter} />
+      <Category setFilter={setFilter} /> {/* Category 컴포넌트 추가 */}
       <TodoList
         filteredTasks={filteredTasks}
         toggleTask={toggleTask}
         editTask={editTask}
         deleteTask={deleteTask}
-        remainingCount={remainingCount}
       />
-    </div>
+    </div>  
   );
 }
 
