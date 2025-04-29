@@ -68,7 +68,10 @@ const Todo = ({ todo }) => {
       <TopRow>
         <Checkbox checked={completed} onChange={() => onToggle(id)} />
         {isEditing ? (
-          <span style={{ marginLeft: '0.5rem' }}>New name for {text}</span>
+          <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+            <span style={{ marginLeft: '0.5rem', marginBottom: '4px' }}>New name for {text}</span>
+            <EditInput value={editText} onChange={(e) => setEditText(e.target.value)} autoFocus />
+          </div>
         ) : (
           <span style={{ marginLeft: '0.5rem' }}>{text}</span>
         )}
