@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import AddTodo from './components/AddTodo.jsx'
 import TodoList from './components/TodoList.jsx'
 import Category from './components/Category.jsx'
 import Header from './components/Header.jsx'
 import { TodoContext } from './context/TodoContext'
+import { v4 as uuidv4 } from 'uuid'
 
 // What needs to be done?
 const SubTitle = styled.p`
@@ -33,13 +34,16 @@ const AppWrapper = styled.div`
 `
 
 const App = () => {
-  const [todos, setTodos] = useState([
-    { id: 1, text: 'Eat', completed: false, isEditing: false },
-    { id: 2, text: 'Sleep', completed: false, isEditing: false },
-    { id: 3, text: 'Repeat', completed: false, isEditing: false },
-  ])
+  const [todos, setTodos] = useState(() => {
+    const saved = localStorage.getItem('todos')
+    return saved ? JSON.parse(saved) : []
+  })
 
   const [filter, setFilter] = useState('all')
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos])
 
   const filteredTodos = todos.filter((todo) => {
     if (filter === 'active') return !todo.completed
