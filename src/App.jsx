@@ -78,6 +78,10 @@ const App = () => {
     )
   }
 
+  const handleCancel = (id) => {
+    setTodos((prev) => prev.map((todo) => (todo.id === id ? { ...todo, isEditing: false } : todo)))
+  }
+
   return (
     <AppWrapper>
       <TodoContext.Provider
@@ -86,6 +90,7 @@ const App = () => {
           onDelete: handleDelete,
           onEdit: handleEdit,
           onSave: handleSave,
+          onCancel: handleCancel,
         }}
       >
         <Header />
