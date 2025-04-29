@@ -47,11 +47,7 @@ const Todo = ({ todo }) => {
   const { onToggle, onDelete, onEdit, onSave, onCancel } = useContext(TodoContext)
   const { id, text, completed, isEditing } = todo
 
-  const [editText, setEditText] = useState(text)
-
-  useEffect(() => {
-    setEditText(text)
-  }, [text])
+  const [editText, setEditText] = useState(isEditing ? text : '')
 
   const handleSave = () => {
     onSave(id, editText)
@@ -61,17 +57,21 @@ const Todo = ({ todo }) => {
     onCancel(id)
   }
 
+  useEffect(() => {
+    if (isEditing) {
+      setEditText(text)
+    }
+  }, [isEditing])
+
   return (
     <TodoWrapper>
       <TopRow>
         <Checkbox checked={completed} onChange={() => onToggle(id)} />
-        <EditInput
-          value={editText}
-          readOnly={!isEditing}
-          onChange={(e) => setEditText(e.target.value)}
-          onBlur={handleSave}
-          autoFocus={isEditing}
-        />
+        {isEditing ? (
+          <span style={{ marginLeft: '0.5rem' }}>New name for {text}</span>
+        ) : (
+          <span style={{ marginLeft: '0.5rem' }}>{text}</span>
+        )}
       </TopRow>
 
       <BottomRow>
