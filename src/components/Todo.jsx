@@ -67,11 +67,17 @@ const Todo = ({ todo }) => {
       </TopRow>
 
       <BottomRow>
-        <HalfButton variant='edit' onClick={() => (isEditing ? handleSave() : onEdit(id))}>
-          {isEditing ? 'Save' : 'Edit'}
+        <HalfButton
+          variant={isEditing ? 'edit' : 'edit'}
+          onClick={() => (isEditing ? handleSave() : onEdit(id))}
+        >
+          {isEditing ? 'Cancel' : 'Edit'}
         </HalfButton>
-        <HalfButton variant='danger' onClick={() => onDelete(id)}>
-          Delete
+        <HalfButton
+          variant={isEditing ? 'Save' : 'danger'}
+          onClick={() => (isEditing ? handleSave() : onDelete(id))}
+        >
+          {isEditing ? 'Save' : 'Delete'}
         </HalfButton>
       </BottomRow>
     </TodoWrapper>
