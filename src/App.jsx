@@ -1,4 +1,3 @@
-
 import Header from "@/component/Header";
 import AddTodo from "@/component/AddTodo";
 import Category from "@/component/Category";
@@ -54,7 +53,7 @@ function App() {
   editTask={editTask}
   deleteTask={deleteTask}
   activeTaskCount={activeTaskCount}
-/>
+  />
 
 
   return (
