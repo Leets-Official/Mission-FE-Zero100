@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import TextComponent from "@/component/TextComponent";
-import ButtonComponent from "@/component/ButtonComponent";
-import CheckboxComponent from "@/component/CheckboxComponent";
-import InputComponent from "@/component/InputComponent";
+
+import Header from "@/component/Header";
+import AddTodo from "@/component/AddTodo";
+import Category from "@/component/Category";
+import TodoList from "@/component/TodoList";
+
+import "./App.css";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -45,47 +47,20 @@ function App() {
   });
 
   return (
-    <div>
-      <h1>
-        <TextComponent text="TodoMatic" />
-      </h1>
-      <h2>
-        <TextComponent text="What needs to be done?" />
-      </h2>
-      <div>
-        <InputComponent
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        <ButtonComponent label="Add Task" onClick={addTask} />
-      </div>
-      <div>
-        <ButtonComponent label="Show all tasks" onClick={() => setFilter("all")} />
-        <ButtonComponent label="Show active tasks" onClick={() => setFilter("active")} />
-        <ButtonComponent label="Show completed tasks" onClick={() => setFilter("completed")} />
-      </div>
-      <div>
-        <TextComponent text="3 tasks remaining" />
-      </div>
-      <ul>
-        {filteredTasks.map((task, index) => (
-          <li key={index}>
-            <CheckboxComponent
-              isChecked={task.completed}
-              onChange={() => toggleTask(index)}
-            />
-            <TextComponent text={task.name} />
-            <ButtonComponent
-              label={`Edit ${task.name}`}
-              onClick={() => editTask(index, prompt("Edit task:", task.name))}
-            />
-            <ButtonComponent
-              label={`Delete ${task.name}`}
-              onClick={() => deleteTask(index)}
-            />
-          </li>
-        ))}
-      </ul>
+    <div className="app-container">
+      <Header />
+      <AddTodo
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        addTask={addTask}
+      />
+      <Category setFilter={setFilter} />
+      <TodoList
+        filteredTasks={filteredTasks}
+        toggleTask={toggleTask}
+        editTask={editTask}
+        deleteTask={deleteTask}
+      />
     </div>
   );
 }

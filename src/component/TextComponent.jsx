@@ -1,7 +1,11 @@
-import React from "react";
+function TextComponent({ text, type }) {
+ 
+  const style = {
+    fontSize: type === "title" ? "2rem" : "1.5rem", 
+    fontWeight: type === "title" ? "bold" : "normal", 
+  };
 
-function TextComponent({ text }) {
-  return <span>{text}</span>;
+  return <span style={style}>{text}</span>;
 }
 
 export default TextComponent;

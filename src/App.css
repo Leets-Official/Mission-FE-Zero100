@@ -1,42 +1,170 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* src/App.css */
+body {
+  font-family: Arial, sans-serif; /* 폰트 변경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app-container {
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
 }
 
-.card {
-  padding: 2em;
+/* 입력창 */
+.input-container {
+  margin-bottom: 10px;
 }
 
-.read-the-docs {
-  color: #888;
+.input-container input {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  border: 2px solid #333; /* 입력창만 굵은 테두리 */
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+/* Add 버튼 */
+.add-button-container {
+  margin-bottom: 20px;
+}
+
+.add-button-container button {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.add-button-container button:hover {
+  background-color: #333;
+}
+
+/* 필터 버튼 */
+.filter-buttons {
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-buttons button {
+  flex: 1; /* 동일한 폭 */
+  padding: 8px 12px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #333; /* 얇은 테두리 */
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.filter-buttons button:hover {
+  background-color: #f0f0f0;
+}
+
+/* 남은 작업 수 */
+.tasks-remaining {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* 작업 목록 */
+.task-list {
+  margin-top: 10px;
+}
+
+.task-item {
+  margin-bottom: 20px;
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.task-row input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 2px solid #333;
+  border-radius: 0;
+  appearance: none;
+  cursor: pointer;
+}
+
+.task-row input[type="checkbox"]:checked {
+  background-color: #000;
+  border-color: #000;
+  position: relative;
+}
+
+.task-row input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: #fff;
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.task-row .task-name {
+  font-size: 1rem;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.task-actions button {
+  flex: 1;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #333;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.task-actions button:hover {
+  background-color: #f0f0f0;
+}
+
+.task-actions .button-delete {
+  background-color: #ff0000;
+  color: #fff;
+ 
+}
+
+.task-actions .button-delete:hover {
+  background-color: #e60000;
 }
