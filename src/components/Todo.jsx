@@ -28,14 +28,12 @@ const BottomRow = styled.div`
 
 //EditInput - 수정 중일 때 나오는 인풋창
 const EditInput = styled.input`
-  flex: 1;
-  margin-left: 0.5rem;
-  padding: 4px;
-
-  /* 읽기 전용일 때 input처럼 안 보이게 */
-  border: ${({ readOnly }) => (readOnly ? 'none' : '1px solid #ccc')};
-  background-color: ${({ readOnly }) => (readOnly ? 'transparent' : 'white')};
+  width: 457px;
+  margin-left: 0.3rem;
+  padding: 8px 12px;
   font-size: 1rem;
+  border: 2px solid #000;
+  box-sizing: border-box;
 `
 
 // 버튼을 정확히 반씩
@@ -67,12 +65,16 @@ const Todo = ({ todo }) => {
     <TodoWrapper>
       <TopRow>
         {isEditing ? (
-          // ✅ 체크박스 대신 고정 텍스트
-          <span style={{ marginLeft: '0.5rem' }}>
+          // 체크박스 대신 고정 텍스트
+          <span
+            style={{
+              marginLeft: '0.5rem',
+            }}
+          >
             New name for {text.replace(/^New name for /, '')}
           </span>
         ) : (
-          // ✅ 평소엔 체크박스 + 기존 텍스트
+          // 평소엔 체크박스 + 기존 텍스트
           <>
             <Checkbox checked={completed} onChange={() => onToggle(id)} />
             <span style={{ marginLeft: '0.5rem' }}>{text}</span>
@@ -82,7 +84,7 @@ const Todo = ({ todo }) => {
 
       {/* Edit 상태에서만 입력창 보여줌 */}
       {isEditing && (
-        <div style={{ paddingLeft: '1.5rem', marginTop: '0.25rem' }}>
+        <div style={{ width: '100%', marginTop: '0.25rem' }}>
           <EditInput
             value={editText}
             placeholder=''
