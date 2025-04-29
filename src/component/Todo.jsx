@@ -53,19 +53,24 @@ const Todo = ({ id, label, onDelete, isChecked, onToggle, onEdit }) => {
 
   return (
     <TodoItem>
-      <Top>
-        <CheckBox id={id} isChecked={isChecked} onChange={() => onToggle(id)} />
+      <Top style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
         {isEditing ? (
-          //수정모드:수정모드
-          <input
-            value={editText}
-            onChange={(e) => setEditText(e.target.value)}
-            placeholder={`New name for ${label}`}
-          />
+          <>
+            <span style={{ fontSize: '14px', marginBottom: '5px' }}>New name for {label}</span>
+            <input
+              value={editText}
+              onChange={(e) => setEditText(e.target.value)}
+              style={{ width: '100%', height: '40px', boxSizing: 'border-box' }}
+            />
+          </>
         ) : (
-          <Label htmlFor={id}>{label}</Label>
+          <>
+            <CheckBox id={id} isChecked={isChecked} onChange={() => onToggle(id)} />
+            <Label htmlFor={id}>{label}</Label>
+          </>
         )}
       </Top>
+
       <Bottom>
         {isEditing ? (
           <>
