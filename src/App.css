@@ -48,16 +48,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-.add-button-container button {
-  width: 100%;
-  padding: 8px;
-  font-size: 1rem;
-  background-color: #000;
-  color: #fff;
-  border: none;
-  border-radius: 0;
-  cursor: pointer;
-}
 
 .add-button-container button:hover {
   background-color: #333;
