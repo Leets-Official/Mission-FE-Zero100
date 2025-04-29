@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 //체크박스
 const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
@@ -12,7 +12,6 @@ const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
   position: relative;
   margin-left: 0.3rem;
 
-
   &:checked::after {
     content: '✔';
     position: absolute;
@@ -21,8 +20,8 @@ const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
     left: 4px;
     color: black;
   }
-`;
+`
 
-const Checkbox = (props) => <StyledCheckbox {...props} />;
+const Checkbox = (props) => <StyledCheckbox {...props} />
 
-export default Checkbox;
+export default Checkbox

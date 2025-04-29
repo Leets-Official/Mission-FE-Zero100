@@ -58,14 +58,14 @@ const App = () => {
   }
 
   const handleEdit = (id) => {
+    const currentText = todos.find((todo) => todo.id === id)?.text || ''
     setTodos((prev) =>
       prev.map((todo) =>
         todo.id === id
           ? {
               ...todo,
               isEditing: true,
-              originalText: todo.text,
-              text: `New name for ${todo.text}`,
+              text: `New name for ${currentText}`,
             }
           : todo,
       ),

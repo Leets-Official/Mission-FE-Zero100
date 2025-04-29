@@ -34,6 +34,7 @@ const EditInput = styled.input`
   font-size: 1rem;
   border: 2px solid #000;
   box-sizing: border-box;
+  border-radius: 0px;
 `
 
 // 버튼을 정확히 반씩
@@ -57,7 +58,7 @@ const Todo = ({ todo }) => {
 
   useEffect(() => {
     if (isEditing) {
-      setEditText(text)
+      setEditText('')
     }
   }, [isEditing])
 
@@ -69,6 +70,8 @@ const Todo = ({ todo }) => {
           <span
             style={{
               marginLeft: '0.5rem',
+              fontSize: '1.25rem',
+              fontWeight: '500',
             }}
           >
             New name for {text.replace(/^New name for /, '')}

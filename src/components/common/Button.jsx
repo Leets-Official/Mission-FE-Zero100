@@ -79,7 +79,7 @@ ${({ variant }) =>
 
   /* Save 버튼 */
   ${({ variant }) =>
-    variant === 'Save' &&
+    variant === 'save' &&
     css`
       background-color: rgb(0, 0, 0);
       color: white;
