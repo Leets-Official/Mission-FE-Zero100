@@ -30,6 +30,7 @@ const TodoList = ({ todos, onDelete, onToggle, remainingCount }) => {
             isChecked={todo.checked}
             onDelete={onDelete}
             onToggle={onToggle}
+            onEdit={onEdit}
           />
         ))}
       </List>

@@ -32,6 +32,10 @@ function App() {
   const toggleTodo = (id) => {
     setTodos(todos.map((todo) => (todo.id === id ? { ...todo, checked: !todo.checked } : todo)))
   }
+
+  const editTodo = (id, newLabel) => {
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, label: newLabel } : todo)))
+  }
   return (
     <div style={{ padding: '10px' }}>
       <Header />
@@ -42,6 +46,7 @@ function App() {
         onDelete={deleteTodo}
         onToggle={toggleTodo}
         remainingCount={remainingCount}
+        onEdit={editTodo}
       />
     </div>
   )

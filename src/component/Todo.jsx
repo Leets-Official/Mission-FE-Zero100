@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import CheckBox from './CheckBox'
 import Button from './Button'
+import { useState } from 'react'
 
 const TodoItem = styled.li`
   margin-bottom: 5px;
@@ -46,17 +47,44 @@ const DeleteButton = styled(Button)`
   cursor: pointer;
 `
 
-const Todo = ({ id, label, onDelete, isChecked, onToggle }) => {
-  console.log('label:', label)
+const Todo = ({ id, label, onDelete, isChecked, onToggle, onEdit }) => {
+  const [isEditing, setIsEditing] = useState(false) //수정모드인지??
+  const [editText, setEditText] = useState(label) //수정할 텍스트가 뭔지??
+
   return (
     <TodoItem>
       <Top>
         <CheckBox id={id} isChecked={isChecked} onChange={() => onToggle(id)} />
-        <Label htmlFor={id}>{label}</Label>
+        {isEditing ? (
+          //수정모드:수정모드
+          <input
+            value={editText}
+            onChange={(e) => setEditText(e.target.value)}
+            placeholder={`New name for ${label}`}
+          />
+        ) : (
+          <Label htmlFor={id}>{label}</Label>
+        )}
       </Top>
       <Bottom>
-        <EditButton>Edit</EditButton>
-        <DeleteButton onClick={() => onDelete(id)}>Delete</DeleteButton>
+        {isEditing ? (
+          <>
+            <EditButton onClick={() => setIsEditing(false)}>Cancel</EditButton>
+            <EditButton
+              onClick={() => {
+                onEdit(id, editText)
+                setIsEditing(false)
+              }}
+            >
+              save
+            </EditButton>
+          </>
+        ) : (
+          <>
+            <EditButton onClick={() => setIsEditing(true)}>Edit</EditButton>
+            <DeleteButton onClick={() => onDelete(id)}>Delete</DeleteButton>
+          </>
+        )}
       </Bottom>
     </TodoItem>
   )
