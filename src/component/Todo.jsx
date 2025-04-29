@@ -47,6 +47,15 @@ const DeleteButton = styled(Button)`
   cursor: pointer;
 `
 
+const SaveButton = styled(Button)`
+  flex: 1;
+  padding: 5px 15px;
+  background-color: black;
+  color: white;
+  border: black;
+  cursor: pointer;
+`
+
 const Todo = ({ id, label, onDelete, isChecked, onToggle, onEdit }) => {
   const [isEditing, setIsEditing] = useState(false) //수정모드인지??
   const [editText, setEditText] = useState(label) //수정할 텍스트가 뭔지??
@@ -55,12 +64,12 @@ const Todo = ({ id, label, onDelete, isChecked, onToggle, onEdit }) => {
     <TodoItem>
       <Top>
         {isEditing ? (
-          <div style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+          <div style={{ flexDirection: 'column', alignItems: 'flex-start', width: '100%' }}>
             <span style={{ fontSize: '14px', marginBottom: '5px' }}>New name for {label}</span>
             <input
               value={editText}
               onChange={(e) => setEditText(e.target.value)}
-              style={{ width: '100%', height: '40px', boxSizing: 'border-box' }}
+              style={{ width: '100%', height: '35px', boxSizing: 'border-box' }}
             />
           </div>
         ) : (
@@ -75,14 +84,14 @@ const Todo = ({ id, label, onDelete, isChecked, onToggle, onEdit }) => {
         {isEditing ? (
           <>
             <EditButton onClick={() => setIsEditing(false)}>Cancel</EditButton>
-            <EditButton
+            <SaveButton
               onClick={() => {
                 onEdit(id, editText)
                 setIsEditing(false)
               }}
             >
               save
-            </EditButton>
+            </SaveButton>
           </>
         ) : (
           <>
