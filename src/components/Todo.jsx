@@ -66,16 +66,31 @@ const Todo = ({ todo }) => {
   return (
     <TodoWrapper>
       <TopRow>
-        {!isEditing && <Checkbox checked={completed} onChange={() => onToggle(id)} />}
         {isEditing ? (
-          <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-            <span style={{ marginLeft: '0.5rem', marginBottom: '4px' }}>New name for {text}</span>
-            <EditInput value={editText} onChange={(e) => setEditText(e.target.value)} autoFocus />
-          </div>
+          // ✅ 체크박스 대신 고정 텍스트
+          <span style={{ marginLeft: '0.5rem' }}>
+            New name for {text.replace(/^New name for /, '')}
+          </span>
         ) : (
-          <span style={{ marginLeft: '0.5rem' }}>{text}</span>
+          // ✅ 평소엔 체크박스 + 기존 텍스트
+          <>
+            <Checkbox checked={completed} onChange={() => onToggle(id)} />
+            <span style={{ marginLeft: '0.5rem' }}>{text}</span>
+          </>
         )}
       </TopRow>
+
+      {/* Edit 상태에서만 입력창 보여줌 */}
+      {isEditing && (
+        <div style={{ paddingLeft: '1.5rem', marginTop: '0.25rem' }}>
+          <EditInput
+            value={editText}
+            placeholder=''
+            onChange={(e) => setEditText(e.target.value)}
+            autoFocus
+          />
+        </div>
+      )}
 
       <BottomRow>
         <HalfButton variant='edit' onClick={() => (isEditing ? handleCancel() : onEdit(id))}>
