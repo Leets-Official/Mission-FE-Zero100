@@ -44,7 +44,7 @@ const HalfButton = styled(Button)`
 `
 
 const Todo = ({ todo }) => {
-  const { onToggle, onDelete, onEdit, onSave } = useContext(TodoContext)
+  const { onToggle, onDelete, onEdit, onSave, onCancel } = useContext(TodoContext)
   const { id, text, completed, isEditing } = todo
 
   const [editText, setEditText] = useState(text)
