@@ -58,7 +58,7 @@ const Todo = ({ todo }) => {
   }
 
   const handleCancel = () => {
-    oncancel(id)
+    onCancel(id)
   }
 
   return (
