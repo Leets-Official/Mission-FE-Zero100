@@ -4,6 +4,7 @@ const StyledCheckBox = styled.input.attrs({ type: 'checkbox' })`
   width: 25px;
   height: 25px;
   appearance: none;
+  flex-shrink: 0;
   border: 1.5px solid;
   cursor: pointer;
   border-radius: 0;
