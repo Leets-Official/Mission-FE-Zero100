@@ -66,7 +66,7 @@ const Todo = ({ todo }) => {
   return (
     <TodoWrapper>
       <TopRow>
-        <Checkbox checked={completed} onChange={() => onToggle(id)} />
+        {!isEditing && <Checkbox checked={completed} onChange={() => onToggle(id)} />}
         {isEditing ? (
           <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
             <span style={{ marginLeft: '0.5rem', marginBottom: '4px' }}>New name for {text}</span>
