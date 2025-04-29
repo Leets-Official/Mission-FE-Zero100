@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import Checkbox from './common/Checkbox'
 import Button from './common/Button'
@@ -49,8 +49,16 @@ const Todo = ({ todo }) => {
 
   const [editText, setEditText] = useState(text)
 
+  useEffect(() => {
+    setEditText(text)
+  }, [text])
+
   const handleSave = () => {
     onSave(id, editText)
+  }
+
+  const handleCancel = () => {
+    oncancel(id)
   }
 
   return (
