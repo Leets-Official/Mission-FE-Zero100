@@ -58,17 +58,19 @@ const App = () => {
   }
 
   const handleEdit = (id) => {
-    const currentText = todos.find((todo) => todo.id === id)?.text || ''
     setTodos((prev) =>
-      prev.map((todo) =>
-        todo.id === id
-          ? {
-              ...todo,
-              isEditing: true,
-              text: `New name for ${currentText}`,
-            }
-          : todo,
-      ),
+      prev.map((todo) => {
+        if (todo.id === id) {
+          const baseText = todo.originalText ?? todo.text
+          return {
+            ...todo,
+            isEditing: true,
+            originalText: baseText,
+            text: `New name for ${baseText}`,
+          }
+        }
+        return todo
+      }),
     )
   }
 
@@ -79,7 +81,11 @@ const App = () => {
   }
 
   const handleCancel = (id) => {
-    setTodos((prev) => prev.map((todo) => (todo.id === id ? { ...todo, isEditing: false } : todo)))
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, isEditing: false, text: todo.originalText } : todo,
+      ),
+    )
   }
 
   return (
