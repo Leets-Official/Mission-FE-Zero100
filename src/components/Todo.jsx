@@ -1,8 +1,9 @@
+// src/components/Todo.jsx
+
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useTodo } from "../contexts/TodoContext";
-import Button from "./Button"; 
-
-import { useState } from "react"; // 수정 모드 상태 관리
+import Input from "./Input"; // 기존에 만든 Input 컴포넌트를 불러옵니다.
 
 const ItemWrapper = styled.li`
   margin-bottom: 1.5rem;
@@ -26,23 +27,48 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-const EditButton = styled(Button)`
+const EditButton = styled.button`
   width: 380px;
+  padding: 8px;
+  background-color:rgb(255, 255, 255);
+  color: black;
+  border: 2px solid black;
+  font-size: 16px;
 
   @media (max-width: 480px) {
     width: 100%;
   }
 `;
 
-const DeleteButton = styled(Button)`
+const DeleteButton = styled.button`
   width: 380px;
+  padding: 8px;
   background-color: #c0392b;
-  color: #fff;
+  color: white;
   border: none;
+  font-size: 16px;
 
   @media (max-width: 480px) {
     width: 100%;
   }
+`;
+
+const SaveButton = styled.button`
+  flex: 1;
+  padding: 8px;
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 16px;
+`;
+
+const CancelButton = styled.button`
+  flex: 1;
+  padding: 8px;
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  font-size: 16px;
 `;
 
 const CheckboxWrapper = styled.label`
@@ -86,58 +112,55 @@ const CheckboxWrapper = styled.label`
 function Todo({ task }) {
   const { toggleTask, deleteTask, editTask } = useTodo();
 
-  const [isEditing, setIsEditing] = useState(false); // 수정모드 여부
-  const [newName, setNewName] = useState(task.name); //  수정할 새로운 이름
+  const [isEditing, setIsEditing] = useState(false);
+  const [newName, setNewName] = useState(task.name);
 
-  function handleSave() {
-    editTask(task.id, newName); // 수정된 이름 저장
-    setIsEditing(false); // 다시 보기 모드로
-  }
+  const handleSave = () => {
+    editTask(task.id, newName);
+    setIsEditing(false);
+  };
 
-  function handleCancel() {
-    setNewName(task.name); // 원래 이름으로 되돌리고
-    setIsEditing(false); // 보기 모드로
-  }
+  const handleCancel = () => {
+    setNewName(task.name);
+    setIsEditing(false);
+  };
 
   return (
     <ItemWrapper>
-      <Row>
-        <CheckboxWrapper>
-          <input
-            type="checkbox"
-            checked={task.completed}
-            onChange={() => toggleTask(task.id)}
-          />
-          <span></span>
-        </CheckboxWrapper>
-
-        {/* 이름 대신 입력창 조건부 렌더링 */}
-        {isEditing ? (
-          <input
+      {isEditing ? (
+        <>
+          <p>New name for {task.name}</p>
+          <Input
             type="text"
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
-            style={{ flex: 1, height: "30px", fontSize: "16px" }}
+            style={{ height: "30px", fontSize: "16px", width: "100%" }}
           />
-        ) : (
-          <span>{task.name}</span>
-        )}
-      </Row>
+          <ButtonWrapper>
+            <CancelButton onClick={handleCancel}>Cancel</CancelButton>
+            <SaveButton onClick={handleSave}>Save</SaveButton>
+          </ButtonWrapper>
+        </>
+      ) : (
+        <>
+          <Row>
+            <CheckboxWrapper>
+              <input
+                type="checkbox"
+                checked={task.completed}
+                onChange={() => toggleTask(task.id)}
+              />
+              <span></span>
+            </CheckboxWrapper>
+            <span>{task.name}</span>
+          </Row>
 
-      <ButtonWrapper>
-        {/* 버튼도 Edit 모드에 따라 다르게 표시 */}
-        {isEditing ? (
-          <>
-            <EditButton onClick={handleSave}>Save</EditButton>
-            <DeleteButton onClick={handleCancel}>Cancel</DeleteButton>
-          </>
-        ) : (
-          <>
+          <ButtonWrapper>
             <EditButton onClick={() => setIsEditing(true)}>Edit</EditButton>
             <DeleteButton onClick={() => deleteTask(task.id)}>Delete</DeleteButton>
-          </>
-        )}
-      </ButtonWrapper>
+          </ButtonWrapper>
+        </>
+      )}
     </ItemWrapper>
   );
 }
