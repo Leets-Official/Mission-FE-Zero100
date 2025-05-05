@@ -10,11 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@types/nanoid": "^2.1.0",
     "nanoid": "^5.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.5.3"
+=======
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+>>>>>>> a6d231f497726e90ded202a3730c47258c1d5a19
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
