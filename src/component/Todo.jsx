@@ -90,7 +90,7 @@ const Todo = ({ id, label, onDelete, isChecked, onToggle, onEdit }) => {
                 setIsEditing(false)
               }}
             >
-              save
+              Save
             </SaveButton>
           </>
         ) : (
