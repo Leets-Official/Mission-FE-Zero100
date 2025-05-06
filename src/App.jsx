@@ -1,60 +1,19 @@
-import { useState } from 'react'
-import styled from 'styled-components'
-import { v4 as uuidv4 } from 'uuid'
-import {
-  Text,
-  Button,
-  Checkbox,
-  Input,
-  Title,
-  Category,
-  Todo,
-  AddTodo,
-  TodoList,
-} from './component/index'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Todo from './pages/Todo'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
 
 function App() {
-  const [tasks, setTasks] = useState([
-    { id: 'eat', label: 'Eat', isChecked: false },
-    { id: 'sleep', label: 'Sleep', isChecked: false },
-    { id: 'repeat', label: 'Repeat', isChecked: false },
-  ])
-
-  const [filter, setFilter] = useState('all')
-
-  const handleAdd = (text) => {
-    if (!text.trim()) return
-    setTasks([...tasks, { id: uuidv4(), label: text, isChecked: false }])
-  }
-
-  const handleToggle = (id) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, isChecked: !task.isChecked } : task
-      )
-    )
-  }
-  const handleDelete = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id))
-  }
-
-  const filteredTasks = tasks.filter((task) => {
-    if (filter === 'all') return true
-    if (filter === 'active') return !task.isChecked
-    if (filter === 'completed') return task.isChecked
-  })
-
   return (
-    <div>
-      <Title />
-      <AddTodo onAdd={handleAdd} />
-      <Category onClick={setFilter} />
-      <TodoList
-        tasks={filteredTasks}
-        onToggle={handleToggle}
-        onDelete={handleDelete}
-      />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Todo" element={<Todo />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
