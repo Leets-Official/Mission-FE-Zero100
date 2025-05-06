@@ -1,7 +1,7 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 function Home() {
-  //Title 컴포넌트 정의
   const Title = styled.div`
     display: flex;
     font-size: 30px;
@@ -45,12 +45,16 @@ function Home() {
         <Text>민성's Todo</Text>
       </Title>
       <ButtonWrapper>
-        <Button>
-          <Text>로그인</Text>
-        </Button>
-        <Button>
-          <Text>회원가입</Text>
-        </Button>
+        <Link to="/login">
+          <Button>
+            <Text>로그인</Text>
+          </Button>
+        </Link>
+        <Link to="/signup">
+          <Button>
+            <Text>회원가입</Text>
+          </Button>
+        </Link>
       </ButtonWrapper>
     </Wrapper>
   )
