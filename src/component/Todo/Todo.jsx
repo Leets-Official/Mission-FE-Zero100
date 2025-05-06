@@ -50,7 +50,7 @@ const SaveButton = styled.button`
 `
 
 const CancelButton = styled.button`
-  background-color: rgb(255, 255, 255);
+  background-color: #ffffff;
   color: black;
   padding: 10px 20px;
   flex: 1;
@@ -73,7 +73,6 @@ const TaskContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  min-height: 40px; // 기본 높이를 설정하여 크기 변동 방지
 `
 
 const EditInputWrapper = styled.div`
@@ -124,7 +123,7 @@ const Todo = ({
           // TaskContainer의 크기를 유지하면서 EditSection만 추가
           <>
             <EditSection>
-              <NewNameLabel>New name for edit:</NewNameLabel>
+              <NewNameLabel>New name for "{task}":</NewNameLabel>
               <EditInputWrapper>
                 <Input
                   value={newName}
