@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import CheckBox from './CheckBox'
 import Button from './Button'
 import { useState } from 'react'
+import Input from './Input'
 
 const TodoItem = styled.li`
   margin-bottom: 5px;
@@ -66,7 +67,7 @@ const Todo = ({ id, label, onDelete, isChecked, onToggle, onEdit }) => {
         {isEditing ? (
           <div style={{ flexDirection: 'column', alignItems: 'flex-start', width: '100%' }}>
             <span style={{ fontSize: '14px', marginBottom: '5px' }}>New name for {label}</span>
-            <input
+            <Input
               value={editText}
               onChange={(e) => setEditText(e.target.value)}
               style={{ width: '100%', height: '35px', boxSizing: 'border-box' }}
