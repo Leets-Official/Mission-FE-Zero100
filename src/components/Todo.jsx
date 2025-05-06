@@ -64,50 +64,52 @@ const Todo = ({ todo }) => {
 
   return (
     <TodoWrapper>
-      <TopRow>
-        {isEditing ? (
-          // 체크박스 대신 고정 텍스트
-          <span
-            style={{
-              marginLeft: '0.5rem',
-              fontSize: '1.25rem',
-              fontWeight: '500',
-            }}
-          >
-            New name for {text.replace(/^New name for /, '')}
-          </span>
-        ) : (
-          // 평소엔 체크박스 + 기존 텍스트
-          <>
+      {isEditing ? (
+        <>
+          <TopRow>
+            <span
+              style={{
+                marginLeft: '0.5rem',
+                fontSize: '1.25rem',
+                fontWeight: '500',
+              }}
+            >
+              New name for {text.replace(/^New name for /, '')}
+            </span>
+          </TopRow>
+          <div style={{ width: '100%', marginTop: '0.25rem' }}>
+            <EditInput
+              value={editText}
+              placeholder=''
+              onChange={(e) => setEditText(e.target.value)}
+              autoFocus
+            />
+          </div>
+          <BottomRow>
+            <HalfButton variant='edit' onClick={handleCancel}>
+              Cancel
+            </HalfButton>
+            <HalfButton variant='save' onClick={handleSave}>
+              Save
+            </HalfButton>
+          </BottomRow>
+        </>
+      ) : (
+        <>
+          <TopRow>
             <Checkbox checked={completed} onChange={() => onToggle(id)} />
             <span style={{ marginLeft: '0.5rem' }}>{text}</span>
-          </>
-        )}
-      </TopRow>
-
-      {/* Edit 상태에서만 입력창 보여줌 */}
-      {isEditing && (
-        <div style={{ width: '100%', marginTop: '0.25rem' }}>
-          <EditInput
-            value={editText}
-            placeholder=''
-            onChange={(e) => setEditText(e.target.value)}
-            autoFocus
-          />
-        </div>
+          </TopRow>
+          <BottomRow>
+            <HalfButton variant='edit' onClick={() => onEdit(id)}>
+              Edit
+            </HalfButton>
+            <HalfButton variant='danger' onClick={() => onDelete(id)}>
+              Delete
+            </HalfButton>
+          </BottomRow>
+        </>
       )}
-
-      <BottomRow>
-        <HalfButton variant='edit' onClick={() => (isEditing ? handleCancel() : onEdit(id))}>
-          {isEditing ? 'Cancel' : 'Edit'}
-        </HalfButton>
-        <HalfButton
-          variant={isEditing ? 'save' : 'danger'}
-          onClick={() => (isEditing ? handleSave() : onDelete(id))}
-        >
-          {isEditing ? 'Save' : 'Delete'}
-        </HalfButton>
-      </BottomRow>
     </TodoWrapper>
   )
 }
