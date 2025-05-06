@@ -49,6 +49,7 @@ const Label = styled.label`
   width: 80px;
   text-align: right;
   font-size: 1rem;
+  font-weight: bold;
 `
 
 const Input = styled.input`
@@ -64,6 +65,7 @@ const Button = styled.button`
   background-color: rgb(86, 86, 86);
   color: white;
   font-weight: bold;
+  font-size: 1rem;
   border: none;
   border-radius: 4px;
 `
