@@ -1,0 +1,291 @@
+/* src/App.css */
+body {
+  font-family: Arial, sans-serif; /* 폰트 변경 */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* 상단 정렬 */
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+  padding-top: 50px; /* 상단 여백 추가 */
+}
+
+.app-container {
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
+  /* 그림자에 대한 언급은 없으므로 제거하거나 유지 */
+  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+  background-color: #fff; /* 배경색 확실히 지정 */
+}
+
+/* 기존 요소들 스타일 */
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* 입력창 (AddTodo) */
+.input-container {
+  margin-bottom: 10px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  border: 2px solid #333; /* 입력창만 굵은 테두리 */
+  border-radius: 0;
+  box-sizing: border-box; /* 패딩과 테두리가 width에 포함되도록 */
+  outline: none; /* 포커스 시 기본 외곽선 제거 */
+}
+
+/* Add 버튼 */
+.add-button-container {
+  margin-bottom: 20px;
+}
+
+.add-button-container button {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  background-color: #000;
+  color: #fff;
+  border: none; /* Add 버튼은 테두리 없음 */
+  border-radius: 0;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s ease; /* 호버 효과 부드럽게 */
+}
+
+.add-button-container button:hover {
+  background-color: #333;
+}
+
+/* 필터 버튼 */
+.filter-buttons {
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-buttons button {
+  flex: 1; /* 동일한 폭 */
+  padding: 8px 12px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #333; /* 얇은 테두리 */
+  border-radius: 0;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* 활성 필터 버튼 스타일 */
+.filter-buttons button.active {
+    background-color: #000; /* 활성 버튼은 배경 검정 */
+    color: #fff; /* 글자 흰색 */
+    border-color: #000;
+}
+
+.filter-buttons button:not(.active):hover { /* 활성 상태가 아닐 때만 호버 스타일 적용 */
+  background-color: #f0f0f0;
+}
+
+/* 남은 작업 수 */
+.tasks-remaining {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* 작업 목록 컨테이너 */
+.task-list {
+  /* margin-top: 10px; */
+}
+
+/* 각 할 일 항목 (기본 & 편집 공통 스타일) */
+.task-item {
+  margin-bottom: 20px; /* 항목 하단 간격 */
+  border-bottom: 1px solid #eee; /* 항목 구분선 */
+  padding-bottom: 20px; /* 구분선과 내용 간 간격 */
+}
+
+.task-item:last-child {
+    border-bottom: none; /* 마지막 항목은 구분선 없음 */
+    padding-bottom: 0;
+}
+
+
+/* 기본 모드 (.task-item 안에 있을 때) */
+.task-item .task-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px; /* 체크박스/이름과 버튼 간 간격 */
+}
+
+/* 체크박스 기본 스타일 */
+.task-item .task-row input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 2px solid #333;
+  border-radius: 0;
+  appearance: none; /* 기본 브라우저 스타일 제거 */
+  cursor: pointer;
+  flex-shrink: 0; /* 체크박스가 줄어들지 않도록 */
+  position: relative; /* 체크마크 위치 기준 */
+  outline: none;
+}
+
+/* 체크박스 체크된 상태 스타일 */
+.task-item .task-row input[type="checkbox"]:checked {
+  background-color: #000;
+  border-color: #000;
+}
+
+/* 체크박스 체크마크 */
+.task-item .task-row input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: #fff;
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 할 일 이름 */
+.task-item .task-row .task-name {
+  font-size: 1rem;
+  flex-grow: 1; /* 남은 공간 차지 */
+  word-break: break-word; /* 긴 단어 줄바꿈 */
+}
+
+/* 완료된 할 일 이름 스타일 */
+.task-item .task-row .task-name.completed {
+    text-decoration: line-through;
+    color: #888; /* 회색으로 변경 */
+}
+
+
+/* Edit/Delete 버튼 컨테이너 (기본 모드 & 편집 모드 공통) */
+.task-item .task-actions {
+  display: flex;
+  gap: 10px; /* 버튼 간 간격 */
+}
+
+/* Edit/Delete 버튼 기본 스타일 */
+.task-item .task-actions button {
+  flex: 1; /* 필터 버튼과 동일한 폭 */
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #333; /* 얇은 테두리 */
+  border-radius: 0;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.task-item .task-actions button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Delete 버튼 스타일 */
+.task-item .task-actions button:last-child {
+  background-color: #ff0000; /* 빨간색 배경 */
+  color: #fff; /* 흰색 글씨 */
+  border-color: #ff0000; /* 배경과 동일한 색 테두리 */
+}
+
+.task-item .task-actions button:last-child:hover {
+  background-color: #e60000; /* 호버 시 약간 어두운 빨간색 */
+  border-color: #e60000;
+}
+
+
+/* --- 👇 편집 모드 (Editing Mode) 스타일 --- */
+
+/* 편집 모드일 때 할 일 항목 컨테이너 레이아웃 */
+.task-item.editing {
+    display: flex; /* Flexbox 사용 */
+    flex-direction: column; /* 자식 요소를 세로로 쌓음 */
+    align-items: flex-start; /* 왼쪽 정렬 */
+}
+
+/* 편집 모드일 때 기본 .task-row (체크박스 + 이름) 숨기기 */
+.task-item.editing .task-row {
+   display: none;
+}
+
+/* 편집 모드 라벨 스타일 ("New name for...") */
+.task-item.editing .edit-label {
+  font-size: 1rem; /* task-name과 동일한 크기 */
+  margin-bottom: 5px; /* 라벨과 입력창 간 간격 */
+  font-weight: normal; /* 볼드 해제 (task-name은 볼드 아니었으므로) */
+}
+
+/* 편집 모드 입력창 스타일 */
+.task-item.editing input.edit-input {
+  width: 100%; /* 부모 컨테이너 폭에 맞춤 */
+  padding: 8px;
+  font-size: 1rem;
+  border: 2px solid #333;
+  border-radius: 0;
+  box-sizing: border-box;
+  margin-bottom: 10px; /* 입력창과 버튼 간 간격 */
+  outline: none; /* 포커스 시 기본 외곽선 제거 */
+}
+
+/* 편집 모드 버튼 컨테이너 스타일 (Cancel/Save) */
+.task-item.editing .task-actions {
+    display: flex; /* 버튼들은 Flex로 */
+    gap: 10px; /* 버튼 간 간격 */
+    width: 100%; /* 부모(task-item.editing) 너비에 맞춤 */
+}
+
+/* Cancel 버튼 스타일 */
+.task-item.editing .task-actions .cancel-button { /* 클래스 선택자 사용 */
+    flex: 1; /* 동일 폭 */
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    background-color: #fff; /* 흰색 배경 */
+    color: #000; /* 검은색 글씨 */
+    border: 1px solid #333; /* 얇은 테두리 */
+    border-radius: 0;
+}
+.task-item.editing .task-actions .cancel-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Save 버튼 스타일 */
+.task-item.editing .task-actions .save-button { /* 클래스 선택자 사용 */
+    flex: 1; /* 동일 폭 */
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    /* 👇 여기! Save 버튼 배경을 검정색으로 변경 */
+    background-color: #000; /* 검은색 배경 */
+    color: #fff; /* 글자색 흰색 유지 */
+    border: none; /* 테두리 없음 유지 */
+    /* 👆 여기까지 수정 */
+    border-radius: 0;
+}
+/* Save 버튼 호버 스타일 */
+.task-item.editing .task-actions .save-button:hover {
+    background-color: #333; /* 호버 시 약간 밝은 검정색 */
+}
+
