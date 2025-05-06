@@ -24,7 +24,7 @@ const PageWrapper = styled.div`
   gap: 0.5rem;
 `
 
-const TodoPage = ({ todos, setTodos, filter, setFilter }) => {
+const Todo = ({ todos, setTodos, filter, setFilter }) => {
   const { onToggle, onDelete, onEdit, onSave, onCancel } = useContext(TodoContext)
 
   const filteredTodos = todos.filter((todo) => {
@@ -44,4 +44,4 @@ const TodoPage = ({ todos, setTodos, filter, setFilter }) => {
   )
 }
 
-export default TodoPage
+export default Todo
