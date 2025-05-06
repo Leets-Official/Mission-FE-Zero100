@@ -58,6 +58,9 @@ const LoginBtn = styled(Button)`
   margin-left: 15px;
   background-color: #444;
   color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
 `
 
 const SignupText = styled.p`
