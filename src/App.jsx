@@ -4,7 +4,8 @@ import Category from './component/Category'
 import TodoList from './component/TodoList'
 import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './component/Home'
+import Home from './pages/Home'
+import Login from './pages/Login'
 
 function TodoPage() {
   const [todos, setTodos] = useState(() => {
@@ -67,6 +68,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </Router>
   )
