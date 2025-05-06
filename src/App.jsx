@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { TodoContext } from './context/TodoContext'
-import TodoPage from './pages/TodoPage'
+import TodoPage from './pages/Todo'
 import MainPage from './pages/Main'
 import LoginPage from './pages/Login'
 import SignupPage from './pages/Signup'
+import { TodoContext } from './context/TodoContext'
 
 const App = () => {
   const [todos, setTodos] = useState(() => {
