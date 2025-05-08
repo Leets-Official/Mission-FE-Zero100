@@ -1,28 +1,32 @@
-import { useState, useContext } from 'react';
-import styled from 'styled-components';
-import Checkbox from './common/Checkbox';
-import Button from './common/Button';
-import { TodoContext } from '../context/TodoContext';
+import { useState, useContext } from 'react'
+import styled from 'styled-components'
+import Checkbox from './common/Checkbox'
+import Button from './common/Button'
+import { TodoContext } from '../context/TodoContext'
 
+// 개별 할 일을 감싸는 외곽 박스
 const TodoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 1rem 0 0.5rem 0.5rem;
   border-radius: 6px;
-`;
+`
 
+//체크박스 + 텍스트
 const TopRow = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-`;
+`
 
+//버튼 2개(Edit, Delete) 들어가는 줄
 const BottomRow = styled.div`
   display: flex;
   gap: 0.5rem;
-  width: 100%; // 버튼이 반반씩 차지하도록 기준 잡기
-`;
+  width: 90%; // 버튼이 반반씩 차지하도록 기준 잡기
+`
 
+//EditInput - 수정 중일 때 나오는 인풋창
 const EditInput = styled.input`
   flex: 1;
   margin-left: 0.5rem;
@@ -32,21 +36,22 @@ const EditInput = styled.input`
   border: ${({ readOnly }) => (readOnly ? 'none' : '1px solid #ccc')};
   background-color: ${({ readOnly }) => (readOnly ? 'transparent' : 'white')};
   font-size: 1rem;
-`;
+`
 
+// 버튼을 정확히 반씩
 const HalfButton = styled(Button)`
-  width: 50%; // 버튼을 정확히 반씩
-`;
+  width: 220px;
+`
 
 const Todo = ({ todo }) => {
-  const { onToggle, onDelete, onEdit, onSave } = useContext(TodoContext);
-  const { id, text, completed, isEditing } = todo;
+  const { onToggle, onDelete, onEdit, onSave } = useContext(TodoContext)
+  const { id, text, completed, isEditing } = todo
 
-  const [editText, setEditText] = useState(text);
+  const [editText, setEditText] = useState(text)
 
   const handleSave = () => {
-    onSave(id, editText);
-  };
+    onSave(id, editText)
+  }
 
   return (
     <TodoWrapper>
@@ -62,18 +67,15 @@ const Todo = ({ todo }) => {
       </TopRow>
 
       <BottomRow>
-        <HalfButton
-          variant="category"
-          onClick={() => (isEditing ? handleSave() : onEdit(id))}
-        >
+        <HalfButton variant='edit' onClick={() => (isEditing ? handleSave() : onEdit(id))}>
           {isEditing ? 'Save' : 'Edit'}
         </HalfButton>
-        <HalfButton variant="danger" onClick={() => onDelete(id)}>
+        <HalfButton variant='danger' onClick={() => onDelete(id)}>
           Delete
         </HalfButton>
       </BottomRow>
     </TodoWrapper>
-  );
-};
+  )
+}
 
-export default Todo;
+export default Todo
