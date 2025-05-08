@@ -16,18 +16,21 @@ const Signup = () => {
 
   return (
     <div className="login-signup-container">
-      <h2 className="form-title">회원가입</h2>
+      <div className="form-title">회원가입</div>
       <form className="form-box" onSubmit={handleSignup}>
-        <label>이름
-          <input type="text" value={name} onChange={e => setName(e.target.value)} required />
-        </label>
-        <label>아이디
-          <input type="text" value={id} onChange={e => setId(e.target.value)} required />
-        </label>
-        <label>비밀번호
-          <input type="password" value={pw} onChange={e => setPw(e.target.value)} required />
-        </label>
-        <button className="form-btn" type="submit">회원가입</button>
+        <div className="form-row">
+          <label htmlFor="name">이름</label>
+          <input id="name" type="text" value={name} onChange={e => setName(e.target.value)} required />
+        </div>
+        <div className="form-row">
+          <label htmlFor="id">아이디</label>
+          <input id="id" type="text" value={id} onChange={e => setId(e.target.value)} required />
+        </div>
+        <div className="form-row">
+          <label htmlFor="pw">비밀번호</label>
+          <input id="pw" type="password" value={pw} onChange={e => setPw(e.target.value)} required />
+        </div>
+        <button className="login-btn" type="submit">회원가입</button>
       </form>
     </div>
   );
