@@ -48,43 +48,25 @@ const Todo = ({ todo }) => {
 
   const [editText, setEditText] = useState(isEditing ? text : '')
 
-  const handleSave = () => {
-    onSave(id, editText)
-  }
-
-  const handleCancel = () => {
-    onCancel(id)
-  }
-
   useEffect(() => {
     if (isEditing) {
-      setEditText('')
+      setEditText(text)
     }
-  }, [isEditing])
+  }, [isEditing, text])
+
+  const handleSave = () => onSave(id, editText)
+  const handleCancel = () => onCancel(id)
 
   return (
     <TodoWrapper>
       {isEditing ? (
         <>
           <TopRow>
-            <span
-              style={{
-                marginLeft: '0.5rem',
-                fontSize: '1.25rem',
-                fontWeight: '500',
-              }}
-            >
-              New name for {text.replace(/^New name for /, '')}
-            </span>
+            <TitleText>New name for {text}</TitleText>
           </TopRow>
-          <div style={{ width: '100%', marginTop: '0.25rem' }}>
-            <EditInput
-              value={editText}
-              placeholder=''
-              onChange={(e) => setEditText(e.target.value)}
-              autoFocus
-            />
-          </div>
+
+          <EditInput value={editText} onChange={(e) => setEditText(e.target.value)} autoFocus />
+
           <BottomRow>
             <HalfButton variant='edit' onClick={handleCancel}>
               Cancel
@@ -98,8 +80,9 @@ const Todo = ({ todo }) => {
         <>
           <TopRow>
             <Checkbox checked={completed} onChange={() => onToggle(id)} />
-            <span style={{ marginLeft: '0.5rem' }}>{text}</span>
+            <TitleText>{text}</TitleText>
           </TopRow>
+
           <BottomRow>
             <HalfButton variant='edit' onClick={() => onEdit(id)}>
               Edit
