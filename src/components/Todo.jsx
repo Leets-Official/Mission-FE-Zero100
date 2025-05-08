@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import Checkbox from './common/Checkbox'
 import Button from './common/Button'
@@ -28,14 +28,13 @@ const BottomRow = styled.div`
 
 //EditInput - 수정 중일 때 나오는 인풋창
 const EditInput = styled.input`
-  flex: 1;
-  margin-left: 0.5rem;
-  padding: 4px;
-
-  /* 읽기 전용일 때 input처럼 안 보이게 */
-  border: ${({ readOnly }) => (readOnly ? 'none' : '1px solid #ccc')};
-  background-color: ${({ readOnly }) => (readOnly ? 'transparent' : 'white')};
+  width: 457px;
+  margin-left: 0.3rem;
+  padding: 8px 12px;
   font-size: 1rem;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  border-radius: 0px;
 `
 
 // 버튼을 정확히 반씩
@@ -44,36 +43,56 @@ const HalfButton = styled(Button)`
 `
 
 const Todo = ({ todo }) => {
-  const { onToggle, onDelete, onEdit, onSave } = useContext(TodoContext)
+  const { onToggle, onDelete, onEdit, onSave, onCancel } = useContext(TodoContext)
   const { id, text, completed, isEditing } = todo
 
-  const [editText, setEditText] = useState(text)
+  const [editText, setEditText] = useState(isEditing ? text : '')
 
-  const handleSave = () => {
-    onSave(id, editText)
-  }
+  useEffect(() => {
+    if (isEditing) {
+      setEditText(text)
+    }
+  }, [isEditing, text])
+
+  const handleSave = () => onSave(id, editText)
+  const handleCancel = () => onCancel(id)
 
   return (
     <TodoWrapper>
-      <TopRow>
-        <Checkbox checked={completed} onChange={() => onToggle(id)} />
-        <EditInput
-          value={editText}
-          readOnly={!isEditing}
-          onChange={(e) => setEditText(e.target.value)}
-          onBlur={handleSave}
-          autoFocus={isEditing}
-        />
-      </TopRow>
+      {isEditing ? (
+        <>
+          <TopRow>
+            <TitleText>New name for {text}</TitleText>
+          </TopRow>
 
-      <BottomRow>
-        <HalfButton variant='edit' onClick={() => (isEditing ? handleSave() : onEdit(id))}>
-          {isEditing ? 'Save' : 'Edit'}
-        </HalfButton>
-        <HalfButton variant='danger' onClick={() => onDelete(id)}>
-          Delete
-        </HalfButton>
-      </BottomRow>
+          <EditInput value={editText} onChange={(e) => setEditText(e.target.value)} autoFocus />
+
+          <BottomRow>
+            <HalfButton variant='edit' onClick={handleCancel}>
+              Cancel
+            </HalfButton>
+            <HalfButton variant='save' onClick={handleSave}>
+              Save
+            </HalfButton>
+          </BottomRow>
+        </>
+      ) : (
+        <>
+          <TopRow>
+            <Checkbox checked={completed} onChange={() => onToggle(id)} />
+            <TitleText>{text}</TitleText>
+          </TopRow>
+
+          <BottomRow>
+            <HalfButton variant='edit' onClick={() => onEdit(id)}>
+              Edit
+            </HalfButton>
+            <HalfButton variant='danger' onClick={() => onDelete(id)}>
+              Delete
+            </HalfButton>
+          </BottomRow>
+        </>
+      )}
     </TodoWrapper>
   )
 }
