@@ -2,10 +2,18 @@ import Header from './component/Header'
 import AddTodo from './component/AddTodo'
 import Category from './component/Category'
 import TodoList from './component/TodoList'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function App() {
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState(() => {
+    const saved = localStorage.getItem('todos')
+    return saved ? JSON.parse(saved) : []
+  })
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos])
+
   const [filter, setFilter] = useState('All') //보여줄 항목 필터링...
 
   const addTodo = (label) => {
@@ -32,6 +40,10 @@ function App() {
   const toggleTodo = (id) => {
     setTodos(todos.map((todo) => (todo.id === id ? { ...todo, checked: !todo.checked } : todo)))
   }
+
+  const editTodo = (id, newLabel) => {
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, label: newLabel } : todo)))
+  }
   return (
     <div style={{ padding: '10px' }}>
       <Header />
@@ -42,6 +54,7 @@ function App() {
         onDelete={deleteTodo}
         onToggle={toggleTodo}
         remainingCount={remainingCount}
+        onEdit={editTodo}
       />
     </div>
   )
