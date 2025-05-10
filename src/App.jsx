@@ -3,8 +3,12 @@ import AddTodo from './component/AddTodo'
 import Category from './component/Category'
 import TodoList from './component/TodoList'
 import { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import SignUp from './pages/SignUp'
 
-function App() {
+function TodoPage() {
   const [todos, setTodos] = useState(() => {
     const saved = localStorage.getItem('todos')
     return saved ? JSON.parse(saved) : []
@@ -60,4 +64,16 @@ function App() {
   )
 }
 
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/todo' element={<TodoPage />} />
+      </Routes>
+    </Router>
+  )
+}
 export default App
