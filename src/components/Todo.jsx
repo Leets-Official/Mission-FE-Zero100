@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import Checkbox from './common/Checkbox'
 import Button from './common/Button'
@@ -28,14 +28,13 @@ const BottomRow = styled.div`
 
 //EditInput - 수정 중일 때 나오는 인풋창
 const EditInput = styled.input`
-  flex: 1;
-  margin-left: 0.5rem;
-  padding: 4px;
-
-  /* 읽기 전용일 때 input처럼 안 보이게 */
-  border: ${({ readOnly }) => (readOnly ? 'none' : '1px solid #ccc')};
-  background-color: ${({ readOnly }) => (readOnly ? 'transparent' : 'white')};
+  width: 457px;
+  margin-left: 0.3rem;
+  padding: 8px 12px;
   font-size: 1rem;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  border-radius: 0px;
 `
 
 // 버튼을 정확히 반씩
@@ -44,34 +43,69 @@ const HalfButton = styled(Button)`
 `
 
 const Todo = ({ todo }) => {
-  const { onToggle, onDelete, onEdit, onSave } = useContext(TodoContext)
+  const { onToggle, onDelete, onEdit, onSave, onCancel } = useContext(TodoContext)
   const { id, text, completed, isEditing } = todo
 
-  const [editText, setEditText] = useState(text)
+  const [editText, setEditText] = useState(isEditing ? text : '')
 
   const handleSave = () => {
     onSave(id, editText)
   }
 
+  const handleCancel = () => {
+    onCancel(id)
+  }
+
+  useEffect(() => {
+    if (isEditing) {
+      setEditText('')
+    }
+  }, [isEditing])
+
   return (
     <TodoWrapper>
       <TopRow>
-        <Checkbox checked={completed} onChange={() => onToggle(id)} />
-        <EditInput
-          value={editText}
-          readOnly={!isEditing}
-          onChange={(e) => setEditText(e.target.value)}
-          onBlur={handleSave}
-          autoFocus={isEditing}
-        />
+        {isEditing ? (
+          // 체크박스 대신 고정 텍스트
+          <span
+            style={{
+              marginLeft: '0.5rem',
+              fontSize: '1.25rem',
+              fontWeight: '500',
+            }}
+          >
+            New name for {text.replace(/^New name for /, '')}
+          </span>
+        ) : (
+          // 평소엔 체크박스 + 기존 텍스트
+          <>
+            <Checkbox checked={completed} onChange={() => onToggle(id)} />
+            <span style={{ marginLeft: '0.5rem' }}>{text}</span>
+          </>
+        )}
       </TopRow>
 
+      {/* Edit 상태에서만 입력창 보여줌 */}
+      {isEditing && (
+        <div style={{ width: '100%', marginTop: '0.25rem' }}>
+          <EditInput
+            value={editText}
+            placeholder=''
+            onChange={(e) => setEditText(e.target.value)}
+            autoFocus
+          />
+        </div>
+      )}
+
       <BottomRow>
-        <HalfButton variant='edit' onClick={() => (isEditing ? handleSave() : onEdit(id))}>
-          {isEditing ? 'Save' : 'Edit'}
+        <HalfButton variant='edit' onClick={() => (isEditing ? handleCancel() : onEdit(id))}>
+          {isEditing ? 'Cancel' : 'Edit'}
         </HalfButton>
-        <HalfButton variant='danger' onClick={() => onDelete(id)}>
-          Delete
+        <HalfButton
+          variant={isEditing ? 'save' : 'danger'}
+          onClick={() => (isEditing ? handleSave() : onDelete(id))}
+        >
+          {isEditing ? 'Save' : 'Delete'}
         </HalfButton>
       </BottomRow>
     </TodoWrapper>
