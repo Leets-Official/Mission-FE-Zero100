@@ -1,7 +1,7 @@
-import Header from './component/Header'
-import AddTodo from './component/AddTodo'
-import Category from './component/Category'
-import TodoList from './component/TodoList'
+import Header from '../component/Header'
+import AddTodo from '../component/AddTodo'
+import Category from '../component/Category'
+import TodoList from '../component/TodoList'
 import { useEffect, useState } from 'react'
 
 function TodoPage() {
