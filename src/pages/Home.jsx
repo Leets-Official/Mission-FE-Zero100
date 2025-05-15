@@ -36,7 +36,7 @@ const Button = styled(Link)`
 function Home() {
   return (
     <Wrapper>
-      <Title>OO’s TODO</Title>
+      <Title>세렴’s TODO</Title>
       <Button to="/login">로그인</Button>
       <Button to="/signup">회원가입</Button>
     </Wrapper>
