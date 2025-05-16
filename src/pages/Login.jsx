@@ -1,9 +1,9 @@
 // src/pages/Login.jsx
 
-import styled from "styled-components";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import styled from "styled-components";
 
 const Box = styled.div`
   margin: 4rem auto;
@@ -20,38 +20,49 @@ const Title = styled.h2`
   font-weight: bold;
 `;
 
-const FormRow = styled.div`
-  display: flex;
-  justify-content: center;
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 80px 220px auto;
+  grid-template-rows: auto auto;
+  column-gap: 0.8rem;
+  row-gap: 1rem;
   align-items: center;
-  margin-bottom: 1rem;
 `;
 
 const Label = styled.label`
-  width: 80px;
-  font-weight: bold;
   text-align: right;
-  margin-right: 1rem;
+  font-weight: bold;
 `;
 
 const Input = styled.input`
-  padding: 0.4rem 0.8rem;
+  padding: 0.4rem 0.6rem;
   font-size: 0.7rem;
-  border: 2px solid black;
+  border: 2px solid #000;
   border-radius: 6px;
-  width: 200px;
+  width: 95%;
 `;
 
 const LoginButton = styled.button`
-  display: block;
-  margin: 2rem auto 0;
-  padding: 0.8rem 2rem;
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  align-self: stretch;
+  padding: 0.8rem 1.2rem;
   background: #444;
   color: white;
-  font-size: 1rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
+  font-size: 1rem;
+  white-space: nowrap;
   cursor: pointer;
+`;
+
+const BottomLink = styled(Link)`
+  display: block;
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: black;
+  text-decoration: none;
 `;
 
 const ErrorMessage = styled.p`
@@ -76,7 +87,7 @@ function Login() {
       }
 
       const user = res.data[0];
-      localStorage.setItem("user", JSON.stringify(user)); // 로그인 정보 저장
+      localStorage.setItem("user", JSON.stringify(user));
       alert(`${user.name}님, 환영합니다!`);
       navigate("/todo");
     } catch (err) {
@@ -89,18 +100,27 @@ function Login() {
     <Box>
       <Title>로그인</Title>
 
-      <FormRow>
+      <Grid>
         <Label htmlFor="id">아이디</Label>
-        <Input id="id" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-      </FormRow>
+        <Input
+          id="id"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <LoginButton onClick={handleLogin}>로그인</LoginButton>
 
-      <FormRow>
         <Label htmlFor="pw">비밀번호</Label>
-        <Input id="pw" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      </FormRow>
+        <Input
+          id="pw"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </Grid>
 
-      <LoginButton onClick={handleLogin}>로그인</LoginButton>
       {error && <ErrorMessage>{error}</ErrorMessage>}
+      <BottomLink to="/signup">회원가입</BottomLink>
     </Box>
   );
 }
