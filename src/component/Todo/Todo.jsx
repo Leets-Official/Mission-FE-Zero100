@@ -123,7 +123,7 @@ const Todo = ({
           // TaskContainer의 크기를 유지하면서 EditSection만 추가
           <>
             <EditSection>
-              <NewNameLabel>New name for "{task}":</NewNameLabel>
+              <NewNameLabel>New name for {task}:</NewNameLabel>
               <EditInputWrapper>
                 <Input
                   value={newName}

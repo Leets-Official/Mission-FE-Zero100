@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "minsungpark020308@gmail.com",
+      "password": "1234",
+      "name": "민성"
+    },
+    {
+      "id": "a570",
+      "name": "박민성",
+      "email": "minsungpark020308",
+      "password": "1234"
+    },
+    {
+      "id": "297e",
+      "name": "박민성",
+      "email": "minsung020308",
+      "password": "1234"
+    }
+  ],
+  "posts": []
+}
