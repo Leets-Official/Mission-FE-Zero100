@@ -1,43 +1,21 @@
-import { TodoProvider } from "./contexts/TodoContext";
-import AddTodo from "./components/AddTodo";
-import Category from "./components/Category";
-import TodoList from "./components/TodoList";
-import styled from "styled-components";
-import Header from "./components/Header";
+// src/App.jsx
 
-
-const PageWrapper = styled.div`
-  min-height: 100vh;
-  background-color: #f2f2f2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Container = styled.div`
-  max-width: 600px;
-  width: 90%;
-  padding: 2rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  min-height: 700px;
-`;
-
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Todo from "./pages/Todo";
 
 function App() {
   return (
-    <TodoProvider>
-      <PageWrapper>
-        <Container>
-          <Header />
-          <AddTodo />
-          <Category />
-          <TodoList />
-        </Container>
-      </PageWrapper>
-    </TodoProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/todo" element={<Todo />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
