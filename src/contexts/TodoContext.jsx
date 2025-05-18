@@ -1,10 +1,20 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const TodoContext = createContext();
 
 export function TodoProvider({ children }) {
-  const [tasks, setTasks] = useState([]);
+  // 초기 tasks를 localStorage에서 불러오기
+  const [tasks, setTasks] = useState(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    return storedTasks ? JSON.parse(storedTasks) : [];
+  });
+
   const [filter, setFilter] = useState("All");
+
+  // tasks가 바뀔 때마다 localStorage에 저장하기
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = (name) => {
     setTasks((prev) => [...prev, { id: Date.now(), name, completed: false }]);
@@ -22,20 +32,34 @@ export function TodoProvider({ children }) {
     );
   };
 
-  const editTask = (id) => {
-    // 예시: 수정 기능은 별도 구현할 수 있음 (여기선 토글처럼 구성)
-    console.log("Edit task", id);
+  const editTask = (id, newName) => {
+    // Edit 기능 구현 (새로운 이름으로 수정)
+    setTasks((prev) =>
+      prev.map((task) =>
+        task.id === id ? { ...task, name: newName } : task
+      )
+    );
   };
 
   const filteredTasks = tasks.filter((task) => {
     if (filter === "All") return true;
     if (filter === "Active") return !task.completed;
     if (filter === "Completed") return task.completed;
+    return true; // 혹시 몰라서 추가
   });
 
   return (
     <TodoContext.Provider
-      value={{ tasks, addTask, deleteTask, toggleTask, editTask, filter, setFilter, filteredTasks }}
+      value={{
+        tasks,
+        addTask,
+        deleteTask,
+        toggleTask,
+        editTask,
+        filter,
+        setFilter,
+        filteredTasks,
+      }}
     >
       {children}
     </TodoContext.Provider>
