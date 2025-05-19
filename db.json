@@ -1,3 +1,9 @@
 {
-  "users": [{ "id": 1, "name": "김지민", "userId": "jimin11", "password": "1234" }]
+  "users": [
+    {
+      "id": "sispo",
+      "name": "김지민",
+      "pw": "1234"
+    }
+  ]
 }
