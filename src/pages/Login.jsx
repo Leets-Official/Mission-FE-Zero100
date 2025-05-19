@@ -89,6 +89,8 @@ function Login() {
         alert('비밀번호/아이디가 일치하지 않습니다.')
         return
       }
+      //로그인 성공 시
+      localStorage.setItem('user', JSON.stringify(user))
       navigate('/todo')
     } catch (err) {
       console.error(err)
