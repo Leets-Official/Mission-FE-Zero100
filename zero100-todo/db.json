@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": "test",
+      "name": "테스트",
+      "password": "1234"
+    },
+    {
+      "id": "ryan5587",
+      "name": "이정윤",
+      "password": "ryanlee17"
+    }
+  ],
+  "todos": [
+    {
+      "id": "1",
+      "text": "Eat",
+      "completed": false,
+      "userId": "test"
+    }
+  ]
+}
