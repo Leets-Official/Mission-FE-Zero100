@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Input from '../component/Input'
 import Button from '../component/Button'
 import styled from 'styled-components'
+import axios from 'axios'
 
 const Container = styled.div`
   max-width: 400px;
@@ -74,6 +75,27 @@ function Login() {
   const [pw, setPw] = useState('')
   const navigate = useNavigate()
 
+  const handleLogin = async () => {
+    try {
+      const res = await axios.get(`http://localhost:4000/users?id=${id}`)
+      const user = res.data[0]
+
+      if (!user) {
+        alert('존재하지 않는 아이디입니다. 회원가입하세요')
+        return
+      }
+
+      if (user.pw != pw) {
+        alert('비밀번호/아이디가 일치하지 않습니다.')
+        return
+      }
+      navigate('/todo')
+    } catch (err) {
+      console.error(err)
+      alert('오류 발생')
+    }
+  }
+
   return (
     <Container>
       <LoginBox>
@@ -89,7 +111,7 @@ function Login() {
               <StyledInput type='password' value={pw} onChange={(e) => setPw(e.target.value)} />
             </FieldRow>
           </Fields>
-          <LoginBtn onClick={() => navigate('/todo')}>로그인</LoginBtn>
+          <LoginBtn onClick={handleLogin}>로그인</LoginBtn>
         </Form>
         <SignupText onClick={() => navigate('/signup')}>회원가입</SignupText>
       </LoginBox>
