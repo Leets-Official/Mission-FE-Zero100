@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "kim123",
+      "password": "1234",
+      "name": "김은서"
+    },
+    {
+      "id": "caa0",
+      "username": "kes",
+      "password": "kes",
+      "name": "은서"
+    },
+    {
+      "id": "12fb",
+      "username": "kes1",
+      "password": "kes1",
+      "name": "은서"
+    },
+    {
+      "id": "99a0",
+      "username": "k",
+      "password": "k",
+      "name": "ㅇ"
+    }
+  ],
+  "posts": []
+}
