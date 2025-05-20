@@ -289,3 +289,136 @@ h2 {
     background-color: #333; /* 호버 시 약간 밝은 검정색 */
 }
 
+body {
+  font-family: sans-serif; /* 폰트는 적절히 수정하세요 */
+  margin: 0;
+  background-color: #ffffff; /* 이미지 배경이 흰색이므로 흰색으로 설정 */
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.app-container {
+  text-align: center;
+  width: 100%;
+  max-width: 450px; /* 이미지의 UI 너비에 맞게 조절 */
+}
+
+.app-title {
+  font-size: 2.5em; /* 이미지와 유사하게 크기 조절 */
+  font-weight: bold;
+  margin-bottom: 40px; /* 버튼들과의 간격 */
+  color: #000000; /* 검은색 글씨 */
+}
+
+.nav-buttons button {
+  background-color: #e7e7e7; /* 이미지의 밝은 회색 버튼 */
+  color: #333;
+  border: none;
+  padding: 15px 30px; /* 버튼 크기 조절 */
+  margin: 10px;
+  border-radius: 30px; /* 둥근 모서리 */
+  font-size: 1.1em;
+  font-weight: bold; /* 글씨 굵게 */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 80%; /* 버튼 너비 조절 */
+  max-width: 300px; /* 최대 너비 */
+}
+
+.nav-buttons button:hover {
+  background-color: #dcdcdc;
+}
+
+.form-container {
+  background-color: #f7f7f7; /* 이미지의 폼 배경색 */
+  padding: 30px 40px; /* 패딩 조절 */
+  border-radius: 8px; /* 약간의 둥근 모서리 */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 이미지에는 그림자가 없어보이지만, 필요시 추가 */
+  margin-top: 30px;
+  text-align: left;
+}
+
+.form-container h2 {
+  font-size: 2.2em; /* 제목 크기 조절 */
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #333; /* 글자색 */
+  margin-right: 15px;
+  width: 90px; /* 레이블 너비 고정 (비밀번호 글자 수에 맞춤) */
+  text-align: left; /* 레이블 왼쪽 정렬 */
+  font-size: 1em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+  flex-grow: 1;
+  padding: 12px 15px;
+  border: 1px solid #cccccc;
+  border-radius: 5px; /* 인풋 둥근 모서리 */
+  font-size: 1em;
+}
+
+/* 로그인 페이지의 로그인 버튼 */
+.form-container button[type="submit"] {
+  background-color: #5a5a5a; /* 이미지의 어두운 회색 버튼 */
+  color: white;
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px; /* 버튼 모서리 */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px; /* 에러 메시지 위 공간 */
+}
+.form-container button[type="submit"]:hover {
+  background-color: #4a4a4a;
+}
+
+/* 로그인 폼 내의 회원가입 이동 텍스트 (버튼처럼 보이지 않게) */
+.login-form-signup-button {
+  background-color: transparent;
+  color: #555; /* 글자색 */
+  border: none;
+  padding: 0; /* 패딩 제거 */
+  font-size: 0.95em; /* 글자 크기 */
+  cursor: pointer;
+  text-decoration: none; /* 밑줄 제거, 필요시 추가 */
+  display: block;
+  text-align: center; /* 중앙 정렬 */
+  margin-top: 25px; /* 로그인 버튼과의 간격 */
+}
+
+.login-form-signup-button:hover {
+  color: #000; /* 호버 시 색상 변경 */
+  text-decoration: underline; /* 호버 시 밑줄 */
+}
+
+
+.error-message {
+  color: red;
+  font-size: 1.2em; /* 점 크기를 위해 폰트 사이즈 조절 */
+  text-align: right;
+  /* height: 20px;  레이아웃을 위해 필요하다면 설정 */
+  /* padding-right: 0; 로그인 폼 오른쪽 끝에 빨간 점을 위한 위치 조정 */
+  /* 이미지는 입력 필드 오른쪽에 점이 있으므로, 이 스타일은 form-group 내에 위치하는게 좋을 수 있음 */
+  /* 지금은 로그인 버튼 위에 표시되도록 설정되어 있음 */
+  margin-top: 5px;
+  margin-bottom: 10px; /* 로그인 버튼과의 간격 */
+}
+
