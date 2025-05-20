@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import AddTodo from './components/AddTodo.jsx'
 import TodoList from './components/TodoList.jsx'
 import Category from './components/Category.jsx'
 import Header from './components/Header.jsx'
 import { TodoContext } from './context/TodoContext'
-import { v4 as uuidv4 } from 'uuid'
+import MainPage from './pages/Main.jsx'
+import LoginPage from './pages/Login.jsx'
+import SignupPage from './pages/Signup.jsx'
+import TodoPage from './pages/Todo.jsx'
 
-// What needs to be done?
 const SubTitle = styled.p`
   text-align: center;
   font-size: 1.5rem;
@@ -15,22 +18,19 @@ const SubTitle = styled.p`
   flex: none;
 `
 
-//전체 Todo 앱을 감싸는 큰 박스
 const AppWrapper = styled.div`
   max-width: 600px;
   width: 100%;
   height: 100vh;
   margin: auto;
-  padding: 1rem; // ✅ 기존 0 2rem → 전체 1rem로 압축
+  padding: 1rem;
   background-color: white;
-  //border: 1px solid #ccc;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; // ✅ 공간 넓히지 않게 변경
+  justify-content: flex-start;
   gap: 0.5rem;
-  text-align: left; // ✅ 컴포넌트 간격 압축
-  box-sizing: border-box;
+  text-align: left;
 `
 
 const App = () => {
@@ -40,6 +40,7 @@ const App = () => {
   })
 
   const [filter, setFilter] = useState('all')
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('loginUser'))
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos))
@@ -92,24 +93,34 @@ const App = () => {
     )
   }
 
+  const contextValue = {
+    onToggle: handleToggle,
+    onDelete: handleDelete,
+    onEdit: handleEdit,
+    onSave: handleSave,
+    onCancel: handleCancel,
+  }
+
   return (
-    <AppWrapper>
-      <TodoContext.Provider
-        value={{
-          onToggle: handleToggle,
-          onDelete: handleDelete,
-          onEdit: handleEdit,
-          onSave: handleSave,
-          onCancel: handleCancel,
-        }}
-      >
-        <Header />
-        <SubTitle>What needs to be done?</SubTitle>
-        <AddTodo setTodos={setTodos} />
-        <Category filter={filter} setFilter={setFilter} />
-        <TodoList todos={filteredTodos} />
-      </TodoContext.Provider>
-    </AppWrapper>
+    <TodoContext.Provider value={contextValue}>
+      <Router>
+        <Routes>
+          <Route path='/' element={<MainPage />} />
+          <Route path='/login' element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path='/signup' element={<SignupPage />} />
+          <Route
+            path='/todo'
+            element={
+              isLoggedIn ? (
+                <TodoPage todos={todos} setTodos={setTodos} filter={filter} setFilter={setFilter} />
+              ) : (
+                <Navigate to='/login' />
+              )
+            }
+          />
+        </Routes>
+      </Router>
+    </TodoContext.Provider>
   )
 }
 
