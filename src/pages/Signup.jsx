@@ -1,6 +1,7 @@
 // src/pages/Login.jsx
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import StyledButton from '../components/common/Button'
 
 const Wrapper = styled.div`
   max-width: 400px;
@@ -54,7 +55,7 @@ const Input = styled.input`
   border-radius: 5px;
 `
 
-const Button = styled.button`
+const SignupButton = styled(StyledButton)`
   width: 100px;
   height: 60px;
   background-color: rgb(86, 86, 86);
@@ -63,7 +64,9 @@ const Button = styled.button`
   font-size: 1.2rem;
   border: none;
   border-radius: 8px;
+  display: flex;
   align-items: center;
+  justify-content: center;
 `
 
 const Signup = () => {

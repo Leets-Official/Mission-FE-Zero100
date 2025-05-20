@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import StyledButton from '../components/common/Button'
 
 const Wrapper = styled.div`
   text-align: center;
@@ -18,23 +19,21 @@ const ButtonGroup = styled.div`
   gap: 25px;
 `
 
-const StyledButton = styled(Link)`
-  padding: 10px 0;
+const MainNavButton = styled(StyledButton)`
   background-color: lightgrey;
   color: black;
-  font-weight: bold;
   border-radius: 25px;
-  width: 180px;
   font-size: 20px;
+  width: 250px;
+  padding: 10px 0;
   text-align: center;
   text-decoration: none;
-  width: 250px;
 `
 
 const Main = () => {
   return (
     <Wrapper>
-      <Title>OO's TODO</Title>
+      <Title>은서's TODO</Title>
       <ButtonGroup>
         <StyledButton to='/login'>로그인</StyledButton>
         <StyledButton to='/signup'>회원가입</StyledButton>
