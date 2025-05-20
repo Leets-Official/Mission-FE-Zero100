@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../api/axios'
 import StyledButton from '../components/common/Button'
 
 const Wrapper = styled.div`
@@ -89,13 +89,15 @@ const Signup = () => {
         params: { username: id },
       })
 
-      if (res.data.length > 0) {
+      const isExist = res.data.some((user) => user.username === id)
+
+      if (isExist) {
         setError('이미 존재하는 아이디입니다.')
       } else {
         await axios.post('/users', {
           username: id,
-          password: password,
-          name: name,
+          password,
+          name,
         })
         alert('회원가입 성공!')
         navigate('/login')
