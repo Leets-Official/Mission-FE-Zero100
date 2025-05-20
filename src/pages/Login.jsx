@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import axios from 'axios'
+import axios from '../api/axios'
 import StyledButton from '../components/common/Button'
 
 const Wrapper = styled.div`
@@ -85,7 +85,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const [id, setId] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -94,13 +94,14 @@ const Login = () => {
   const handleLogin = async () => {
     console.log('로그인 버튼 눌림')
     try {
-      const res = await axios.get('http://localhost:3001/users', {
+      const res = await axios.get('/users', {
         params: { username: id, password },
       })
 
       if (res.data.length > 0) {
         const user = res.data[0]
         localStorage.setItem('loginUser', JSON.stringify(user))
+        setIsLoggedIn(true)
         alert(`${user.username}님 로그인 성공!`)
         navigate('/todo')
       } else {
