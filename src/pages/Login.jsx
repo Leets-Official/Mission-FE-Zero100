@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import StyledButton from '../components/common/Button'
 
 const Wrapper = styled.div`
   max-width: 400px;
@@ -59,7 +60,7 @@ const Input = styled.input`
   border-radius: 5px;
 `
 
-const Button = styled.button`
+const LoginButton = styled(StyledButton)`
   width: 80px;
   height: 85px;
   background-color: rgb(86, 86, 86);
