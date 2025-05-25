@@ -80,7 +80,7 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.get(`http://localhost:3001/users?username=${username}&password=${password}`);
+      const res = await axios.get(`/users?username=${username}&password=${password}`);
       if (res.data.length === 0) {
         setError("아이디 또는 비밀번호가 일치하지 않습니다.");
         return;
