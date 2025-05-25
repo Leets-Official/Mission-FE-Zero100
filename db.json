@@ -17,6 +17,12 @@
       "name": "박민성",
       "email": "minsung020308",
       "password": "1234"
+    },
+    {
+      "id": "20e5",
+      "name": "민성",
+      "email": "minsung1234",
+      "password": "1234"
     }
   ],
   "posts": []

@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import api from '../api'
+import { Button } from '../component'
+import { Input } from '../component'
 
 const TitleText = styled.p`
   font-size: 30px;
@@ -10,7 +12,8 @@ const TitleText = styled.p`
   text-align: center;
   margin-bottom: 20px;
 `
-const StyleInput = styled.input`
+
+const StyleInput = styled(Input)`
   width: 100px;
   flex-grow: 1;
   font-size: 10px;
@@ -20,6 +23,7 @@ const StyleInput = styled.input`
   border-radius: 6px;
   box-sizing: border-box;
 `
+
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -44,7 +48,7 @@ const InputFieldWrapper = styled.div`
   width: 100%;
 `
 
-const LoginButton = styled.button`
+const LoginButton = styled(Button)`
   width: 80px;
   height: 40px;
   color: white;
@@ -53,7 +57,7 @@ const LoginButton = styled.button`
   border: 1px solid rgb(0, 0, 0);
 `
 
-const TotalWrapper = styled.div`
+const SignupWrapper = styled.div`
   background-color: rgba(208, 205, 212, 0.73);
   height: 300px;
   margin-top: 30px;
@@ -103,7 +107,7 @@ function Signup() {
   }
 
   return (
-    <TotalWrapper>
+    <SignupWrapper>
       <TitleText>회원가입</TitleText>
 
       <InputWrapper>
@@ -133,7 +137,7 @@ function Signup() {
         </InputFieldWrapper>
       </InputWrapper>
       <LoginButton onClick={handleSignup}>회원가입</LoginButton>
-    </TotalWrapper>
+    </SignupWrapper>
   )
 }
 
