@@ -1,7 +1,9 @@
+// src/components/Todo.jsx
+
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useTodo } from "../contexts/TodoContext";
-import Button from "./Button"; 
-
+import Input from "./Input"; // 기존에 만든 Input 컴포넌트를 불러옵니다.
 
 const ItemWrapper = styled.li`
   margin-bottom: 1.5rem;
@@ -25,23 +27,48 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-const EditButton = styled(Button)`
+const EditButton = styled.button`
   width: 380px;
+  padding: 8px;
+  background-color:rgb(255, 255, 255);
+  color: black;
+  border: 2px solid black;
+  font-size: 16px;
 
   @media (max-width: 480px) {
     width: 100%;
   }
 `;
 
-const DeleteButton = styled(Button)`
+const DeleteButton = styled.button`
   width: 380px;
+  padding: 8px;
   background-color: #c0392b;
-  color: #fff;
+  color: white;
   border: none;
+  font-size: 16px;
 
   @media (max-width: 480px) {
     width: 100%;
   }
+`;
+
+const SaveButton = styled.button`
+  flex: 1;
+  padding: 8px;
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 16px;
+`;
+
+const CancelButton = styled.button`
+  flex: 1;
+  padding: 8px;
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  font-size: 16px;
 `;
 
 const CheckboxWrapper = styled.label`
@@ -72,7 +99,7 @@ const CheckboxWrapper = styled.label`
   }
 
   input:checked + span::after {
-    content: \"✔️\";
+    content: "✔️";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -85,23 +112,55 @@ const CheckboxWrapper = styled.label`
 function Todo({ task }) {
   const { toggleTask, deleteTask, editTask } = useTodo();
 
+  const [isEditing, setIsEditing] = useState(false);
+  const [newName, setNewName] = useState(task.name);
+
+  const handleSave = () => {
+    editTask(task.id, newName);
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setNewName(task.name);
+    setIsEditing(false);
+  };
+
   return (
     <ItemWrapper>
-      <Row>
-        <CheckboxWrapper>
-          <input
-            type="checkbox"
-            checked={task.completed}
-            onChange={() => toggleTask(task.id)}
+      {isEditing ? (
+        <>
+          <p>New name for {task.name}</p>
+          <Input
+            type="text"
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
+            style={{ height: "30px", fontSize: "16px", width: "100%" }}
           />
-          <span></span>
-        </CheckboxWrapper>
-        <span>{task.name}</span>
-      </Row>
-      <ButtonWrapper>
-        <EditButton onClick={() => editTask(task.id)}>Edit</EditButton>
-        <DeleteButton onClick={() => deleteTask(task.id)}>Delete</DeleteButton>
-      </ButtonWrapper>
+          <ButtonWrapper>
+            <CancelButton onClick={handleCancel}>Cancel</CancelButton>
+            <SaveButton onClick={handleSave}>Save</SaveButton>
+          </ButtonWrapper>
+        </>
+      ) : (
+        <>
+          <Row>
+            <CheckboxWrapper>
+              <input
+                type="checkbox"
+                checked={task.completed}
+                onChange={() => toggleTask(task.id)}
+              />
+              <span></span>
+            </CheckboxWrapper>
+            <span>{task.name}</span>
+          </Row>
+
+          <ButtonWrapper>
+            <EditButton onClick={() => setIsEditing(true)}>Edit</EditButton>
+            <DeleteButton onClick={() => deleteTask(task.id)}>Delete</DeleteButton>
+          </ButtonWrapper>
+        </>
+      )}
     </ItemWrapper>
   );
 }
