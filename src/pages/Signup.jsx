@@ -70,13 +70,14 @@ function Signup() {
 
   const handleSignup = async () => {
     try {
-      const res = await axios.get(`http://localhost:3001/users?username=${username}`);
+      const res = await axios.get(`/users?username=${username}`);
+
       if (res.data.length > 0) {
         setError("이미 존재하는 아이디입니다.");
         return;
       }
 
-      await axios.post("http://localhost:3001/users", {
+      await axios.post("/users", {
         name,
         username,
         password,
