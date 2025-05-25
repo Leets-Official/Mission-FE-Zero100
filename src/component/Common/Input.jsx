@@ -18,11 +18,20 @@ const StyledInput = styled.input`
   }
 `
 
-export default function Input({ value, onChange }) {
-  return <StyledInput type="text" value={value} onChange={onChange} />
+export default function Input({ value, onChange, className, type = 'text' }) {
+  return (
+    <StyledInput
+      type={type}
+      value={value}
+      onChange={onChange}
+      className={className}
+    />
+  )
 }
 
 Input.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  type: PropTypes.string,
 }

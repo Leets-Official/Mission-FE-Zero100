@@ -17,6 +17,42 @@
       "name": "박민성",
       "email": "minsung020308",
       "password": "1234"
+    },
+    {
+      "id": "20e5",
+      "name": "민성",
+      "email": "minsung1234",
+      "password": "1234"
+    },
+    {
+      "id": "6ab7",
+      "name": "민성",
+      "email": "minsung12345",
+      "password": "1234"
+    },
+    {
+      "id": "b5ca",
+      "name": "테스트",
+      "email": "test",
+      "password": "test"
+    },
+    {
+      "id": "377d",
+      "name": "실험2",
+      "email": "test3",
+      "password": "test3"
+    },
+    {
+      "id": "746f",
+      "name": "실험3",
+      "email": "test4",
+      "password": "test4"
+    },
+    {
+      "id": "d67a",
+      "name": "실험5",
+      "email": "test5",
+      "password": "test5"
     }
   ],
   "posts": []

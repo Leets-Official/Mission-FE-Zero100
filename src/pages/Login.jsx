@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import api from '../api'
 
 const TitleText = styled.p`
   font-size: 30px;
@@ -10,6 +10,7 @@ const TitleText = styled.p`
   text-align: center;
   margin-bottom: 20px;
 `
+
 const StyleInput = styled.input`
   width: 100px;
   flex-grow: 1;
@@ -25,6 +26,7 @@ const StyleLink = styled(Link)`
   text-decoration: none;
   color: black;
 `
+
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -65,6 +67,7 @@ const LoginButton = styled.button`
   border-radius: 3px;
   border: 1px solid rgb(0, 0, 0);
 `
+
 const SignUp = styled.p`
   font-weight: 500;
   text-align: center;
@@ -89,9 +92,7 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:3001/users?email=${email}&password=${password}`
-      )
+      const res = await api.get(`/users?email=${email}&password=${password}`)
       if (res.data.length > 0) {
         const user = res.data[0]
         localStorage.setItem('user', JSON.stringify(user))
