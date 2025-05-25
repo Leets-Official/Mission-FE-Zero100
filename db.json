@@ -23,6 +23,18 @@
       "name": "민성",
       "email": "minsung1234",
       "password": "1234"
+    },
+    {
+      "id": "6ab7",
+      "name": "민성",
+      "email": "minsung12345",
+      "password": "1234"
+    },
+    {
+      "id": "b5ca",
+      "name": "테스트",
+      "email": "test",
+      "password": "test"
     }
   ],
   "posts": []
