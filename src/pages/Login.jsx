@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import api from '../api'
 
 const TitleText = styled.p`
   font-size: 30px;
@@ -92,7 +92,7 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.get(`/users?email=${email}&password=${password}`)
+      const res = await api.get(`/users?email=${email}&password=${password}`)
       if (res.data.length > 0) {
         const user = res.data[0]
         localStorage.setItem('user', JSON.stringify(user))
