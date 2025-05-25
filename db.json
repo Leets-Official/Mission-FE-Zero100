@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "test",
+      "password": "1234",
+      "name": "홍길동"
+    },
+    {
+      "id": "1757",
+      "name": "test",
+      "username": "1",
+      "password": "1234"
+    },
+    {
+      "id": "a087",
+      "name": "박세렴",
+      "username": "22",
+      "password": "1234"
+    },
+    {
+      "id": "2233",
+      "name": "박세렴",
+      "username": "12",
+      "password": "1234"
+    }
+  ]
+}

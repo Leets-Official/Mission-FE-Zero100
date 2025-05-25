@@ -44,7 +44,7 @@ const DeleteButton = styled.button`
   width: 380px;
   padding: 8px;
   background-color: #c0392b;
-  color: white;
+  color: #ffffff;
   border: none;
   font-size: 16px;
 
