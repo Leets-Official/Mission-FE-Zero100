@@ -4,6 +4,7 @@ import Button from '../component/Button'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import api from '../api/api'
 
 const Container = styled.div`
   max-width: 400px;
@@ -62,13 +63,13 @@ function Signup() {
 
   const handleSignUp = async () => {
     try {
-      const res = await axios.get(`http://localhost:4000/users?id=${id}`)
+      const res = await api.get(`/users?id=${id}`)
       if (res.data.length > 0) {
         alert('이미 존재하는 아이디입니다.')
         return
       }
 
-      await axios.post('http://localhost:4000/users', {
+      await api.post(`/users`, {
         name,
         id,
         pw,

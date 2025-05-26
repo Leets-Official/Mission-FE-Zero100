@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Input from '../component/Input'
 import Button from '../component/Button'
 import styled from 'styled-components'
-import axios from 'axios'
+import api from '../api/api'
 
 const Container = styled.div`
   max-width: 400px;
@@ -77,7 +77,7 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.get(`http://localhost:4000/users?id=${id}`)
+      const res = await api.get(`/users?id=${id}`)
       const user = res.data[0]
 
       if (!user) {
