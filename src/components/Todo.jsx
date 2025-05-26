@@ -4,6 +4,12 @@ import Checkbox from './common/Checkbox'
 import Button from './common/Button'
 import { TodoContext } from '../context/TodoContext'
 
+const TitleText = styled.span`
+  margin-left: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+`
+
 // 개별 할 일을 감싸는 외곽 박스
 const TodoWrapper = styled.div`
   display: flex;
