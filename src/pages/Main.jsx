@@ -18,7 +18,7 @@ const ButtonGroup = styled.div`
   gap: 25px;
 `
 
-const button = styled(Link)`
+const Button = styled(Link)`
   background-color: lightgrey;
   color: black;
   border-radius: 25px;
@@ -35,8 +35,8 @@ const Main = () => {
     <Wrapper>
       <Title>은서's TODO</Title>
       <ButtonGroup>
-        <button to='/login'>로그인</button>
-        <button to='/signup'>회원가입</button>
+        <Button to='/login'>로그인</Button>
+        <Button to='/signup'>회원가입</Button>
       </ButtonGroup>
     </Wrapper>
   )
