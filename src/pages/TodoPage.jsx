@@ -14,7 +14,7 @@ function TodoPage() {
     localStorage.setItem('todos', JSON.stringify(todos))
   }, [todos])
 
-  const [filter, setFilter] = useState('All') //보여줄 항목 필터링...
+  const [filter, setFilter] = useState('All')
 
   const addTodo = (label) => {
     const newTodo = {
