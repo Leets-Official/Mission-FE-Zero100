@@ -1,4 +1,3 @@
-
 import ButtonComponent from "./ButtonComponent";
 
 function Category({ setFilter }) {
